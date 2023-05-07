@@ -1,7 +1,18 @@
 .mb {
-  margin-bottom: 20rem;
+  margin-bottom: 10rem;
+  ;
 }
 
 .mt {
-  margin-top: 20rem;
+  margin-top: 10rem;
+}
+
+.btn {
+ background-color: #2fcdcd;
+ border-style: none;
+ width: 100%;
+}
+
+.card {
+  height: auto;
 }

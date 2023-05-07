@@ -32,6 +32,11 @@
           >
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isLogged" aria-current="page" href="/elegir"
+            > Elegir cochera </a>
+        </li>
+
         <!----------------- LINKS DINAMICOS DEL LOGIN -------------->
         <li class="nav-item" *ngIf="isLogged">
           <a class="nav-link" href="#">Alquila tu cochera</a>
