@@ -8,11 +8,18 @@
 }
 
 .btn {
- background-color: #2fcdcd;
+ background-color: #2c6161;
  border-style: none;
  width: 100%;
 }
 
 .card {
   height: auto;
+  border-color: #2a9e9e;
+  background-color: #2a9e9e;
+}
+
+
+.btn:hover {
+  background-color: #36b5b5;
 }
