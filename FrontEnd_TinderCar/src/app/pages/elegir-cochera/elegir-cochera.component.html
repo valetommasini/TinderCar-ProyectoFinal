@@ -28,10 +28,10 @@
             aria-hidden="true"
           >
             <div class="modal-dialog">
-              <div class="modal-content">
+              <div class="modal-content ">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Modal title
+                    Cochera San Martin
                   </h1>
                   <button
                     type="button"
@@ -40,17 +40,58 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">Cochera...</div>
+                <div class="modal-body fw-semibold">
+                  <div class="img-cochera">
+                    <img src="../../../assets/img/parking1.jpg" class="card-img-top" alt="parking1" />
+                      <div class="mt-2 text-center">
+                        <p>Precio Estadía Mensual: &#36;500</p>
+                        <p>Precio Estadía Mensual Según Cantidad de Vehículos:</p>
+                      </div>
+                    <div class="row-cols-lg-2">
+                      <div class="col-xl-10">
+                          <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Cantidad</label>
+                            <select class="form-select fw-medium" id="inputGroupSelect01">
+                              <option selected class="m-auto ">Seleccione</option>
+                              <option value="1">Dos: &#36;1000</option>
+                              <option value="2">Tres: &#36;1300</option>
+                              <option value="3">Cuatro: &#36;1600</option>
+                            </select>
+                          </div>
+                        <p class="text-center fw-medium">Usted puede adquirir:</p>
+                            <div class="input-group mb-3">
+                              <label class="input-group-text" for="inputGroupSelect01">Servicios Extras</label>
+                              <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Seleccione</option>
+                                <option value="1">Lavado Carrocería &#36;250</option>
+                                <option value="2">Lavado Carrocería y Tapizado &#36;300</option>
+                                <option value="3">Lavado Completo + Tratamiento Cerámico&#36;1600</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+                </div>
                 <div class="modal-footer">
-                  <button
+                <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="toast-body">
+                    Hello, world! This is a toast message.
+                    <div class="mt-2 pt-2 border-top">
+                      <button type="button" class="btn btn-primary btn-sm">Take action</button>
+                      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                    </div>
+                  </div>
+                </div>
+                  <!-- <button 
                     type="button"
                     class="btn btn-secondary"
-                    data-bs-dismiss="modal"
+                    id="liveToastBtn"
                   >
-                    Close
-                  </button>
+                    Agregar al Carrito
+                  </button>-->
                   <button type="button" class="btn btn-primary">
-                    Save changes
+                    Alquilar
                   </button>
                 </div>
               </div>
@@ -93,7 +134,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Modal title
+                    Cochera Buchardo
                   </h1>
                   <button
                     type="button"
@@ -102,7 +143,7 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">Cochera...</div>
+                <div class="modal-body">Cochera Buchardo</div>
                 <div class="modal-footer">
                   <button
                     type="button"
@@ -142,7 +183,7 @@
           >
             Alquilar
           </button>
-          
+
 
           <!-- Modal -->
           <div
@@ -333,7 +374,7 @@
           >
             Alquilar
           </button>
-          
+
 
           <!-- Modal -->
           <div
