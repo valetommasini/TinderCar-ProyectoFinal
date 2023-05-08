@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./carrito-alquiler.component.css']
 })
 export class CarritoAlquilerComponent {
-
 }
