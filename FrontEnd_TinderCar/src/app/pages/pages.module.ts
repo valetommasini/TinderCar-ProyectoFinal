@@ -7,6 +7,8 @@ import { RegistrateUnicoComponent } from './registrate-unico/registrate-unico.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ElegirCocheraComponent } from './elegir-cochera/elegir-cochera.component';
+import { CarritoAlquilerComponent } from './carrito-alquiler/carrito-alquiler.component';
+import { DetalleFacturacionComponent } from './detalle-facturacion/detalle-facturacion.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { ElegirCocheraComponent } from './elegir-cochera/elegir-cochera.componen
     LoginComponent,
     RegistrateUnicoComponent,
     ElegirCocheraComponent,
+    CarritoAlquilerComponent,
+    DetalleFacturacionComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -23,6 +27,8 @@ import { ElegirCocheraComponent } from './elegir-cochera/elegir-cochera.componen
     LoginComponent,
     RegistrateUnicoComponent,
     ElegirCocheraComponent,
+    CarritoAlquilerComponent,
+    DetalleFacturacionComponent,
   ],
 })
 export class PagesModule {}

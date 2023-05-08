@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 d-flex justify-content-between">
       <div class="card" style="width: 30rem">
-        <img src="../../../assets/img/parking5.jpeg" class="card-img-top" alt="parking1" />
+        <img src="../../../assets/img/parking1.jpg" class="card-img-top" alt="parking1" />
         <div class="card-body">
           <h5 class="card-title"> Cochera 1 </h5>
           <p class="card-text">
@@ -28,10 +28,10 @@
             aria-hidden="true"
           >
             <div class="modal-dialog">
-              <div class="modal-content">
+              <div class="modal-content ">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Modal title
+                    Cochera Título
                   </h1>
                   <button
                     type="button"
@@ -40,17 +40,49 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">Cochera...</div>
+                <div class="modal-body fw-semibold">
+                  <div class="img-cochera">
+                    <img src="../../../assets/img/parking1.jpg" class="card-img-top" alt="parking1" />
+                      <div class="mt-2 text-center">
+                        <p>Precio Estadía Mensual: &#36;500</p>
+                        <p>Precio Estadía Mensual Según Cantidad de Vehículos:</p>
+                      </div>
+                    <div class="row-cols-lg-2">
+                      <div class="col-xl-10">
+                          <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Cantidad</label>
+                            <select class="form-select fw-medium" id="inputGroupSelect01">
+                              <option selected class="m-auto ">Seleccione</option>
+                              <option value="1">Dos: &#36;1000</option>
+                              <option value="2">Tres: &#36;1300</option>
+                              <option value="3">Cuatro: &#36;1600</option>
+                            </select>
+                          </div>
+                        <p class="text-center fw-medium">Usted puede adquirir:</p>
+                            <div class="input-group mb-3">
+                              <label class="input-group-text" for="inputGroupSelect01">Servicios Extras</label>
+                              <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Seleccione</option>
+                                <option value="1">Lavado Carrocería &#36;250</option>
+                                <option value="2">Lavado Carrocería y Tapizado &#36;300</option>
+                                <option value="3">Lavado Completo + Tratamiento Cerámico&#36;1600</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+                </div>
                 <div class="modal-footer">
-                  <button
+
+                <button
                     type="button"
                     class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
+                    routerLink="/carrito"
+                >
+                   Agregar al Carrito
                   </button>
-                  <button type="button" class="btn btn-primary">
-                    Save changes
+                  <button type="button" class="btn btn-primary" routerLink="/detalle-facturacion">
+                    Alquilar
                   </button>
                 </div>
               </div>
@@ -61,12 +93,12 @@
 
       <div class="card" style="width: 30rem">
         <img
-          src="../../../assets/img/parking6.jpg"
+          src="../../../assets/img/parkin2.jpeg"
           class="card-img-top"
           alt="parking2"
         />
         <div class="card-body">
-          <h5 class="card-title"> Cochera 2</h5>
+          <h5 class="card-title">Cochera 2</h5>
           <p class="card-text">
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
@@ -93,7 +125,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Modal title
+                    cochera
                   </h1>
                   <button
                     type="button"
@@ -102,7 +134,7 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">Cochera...</div>
+                <div class="modal-body">Cochera Buchardo</div>
                 <div class="modal-footer">
                   <button
                     type="button"
@@ -123,12 +155,12 @@
 
       <div class="card" style="width: 30rem">
         <img
-          src="../../../assets/img/parking8.jpg"
+          src="../../../assets/img/parking1.jpg"
           class="card-img-top"
           alt="..."
         />
         <div class="card-body">
-          <h5 class="card-title"> Cochera 3</h5>
+          <h5 class="card-title">Cochera 3</h5>
           <p class="card-text">
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
@@ -142,7 +174,7 @@
           >
             Alquilar
           </button>
-          
+
 
           <!-- Modal -->
           <div
@@ -333,7 +365,7 @@
           >
             Alquilar
           </button>
-          
+
 
           <!-- Modal -->
           <div
