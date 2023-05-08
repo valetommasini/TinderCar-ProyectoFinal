@@ -27,6 +27,8 @@ import { DetalleFacturacionComponent } from './detalle-facturacion/detalle-factu
     LoginComponent,
     RegistrateUnicoComponent,
     ElegirCocheraComponent,
+    CarritoAlquilerComponent,
+    DetalleFacturacionComponent,
   ],
 })
 export class PagesModule {}
