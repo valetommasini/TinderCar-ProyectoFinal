@@ -15,4 +15,10 @@
 
 .card {
   height: auto;
+  border-color: #2a9e9e;
+  background-color: #2a9e9e;
+}
+
+.btn:hover {
+  background-color: #36b5b5;
 }
