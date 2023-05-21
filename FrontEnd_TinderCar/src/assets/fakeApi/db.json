@@ -60,43 +60,43 @@
           "id": 1,
           "img": "./assets/img/c1.jpg",
           "nombre": "Cochera Balcarce ",
-          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "descripcion": "Dirección: Bulevar illia 1985. Ofrecemos servicio de lavado, no alqiolamos por día.",
           "precio": 500
         },
         {
           "id": 2,
           "img": "./assets/img/c2.jpg",
-          "nombre": "Cochera 2",
-          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "nombre": "Cochera San Franciso",
+          "descripcion": "Dirección: Fueraza Aerea 2020. Cochera de alquiler por día, techada.",
           "precio": 500
         },
         {
           "id": 3,
           "img": "./assets/img/c3.jpg",
-          "nombre": "Cochera 3",
-          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "nombre": "Cochera Martinelli",
+          "descripcion": "Direcció: Gral Paz, Pedro Goyena 3010. Alquilamos mensual, por mes y semestral. Cochera totalmente techada",
           "precio": 500
         },
 
         {
           "id": 4,
           "img": "./assets/img/c4.jpg",
-          "nombre": "Cochera 4",
-          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "nombre": "Cochera La Rueda",
+          "descripcion": "Dirección: San Vicente, Garcia Lorca 2510. Alquilamos mensual y semestral. Cochera totalmente techada. Promociones por 2 autos",
           "precio": 500
         },
         {
           "id": 5,
           "img": "./assets/img/c5.jpg",
-          "nombre": "Cochera 5",
-          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "nombre": "Cochera Alta Córdoba",
+          "descripcion": "Dirección: Alta Gracia, Primera Junta 3010. Alquilamos por día, mensual y semestral. Cochera totalmente techada",
           "precio": 500
         },
         {
           "id": 6,
           "img": "./assets/img/c6.jpg",
-          "nombre": "Cochera 6",
-          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "nombre": "Cochera Nazareno",
+          "descripcion": "Dirección: Villa allende, Pellegrini 1580. Alquilamos mensual, semestral y anual. Cochera con techo. Promociones por 2 autos",
           "precio": 500
         }
       ],
@@ -115,7 +115,16 @@
           "lavado": "lavado completo mas tratamiento ceramico",
           "precio": 1600
         }
-      ]
+      ],
+
+      "tiempoPrecio": [
+        {"tiempo": "1 día","precio": "$1000"},
+        {"tiempo": "15 días", "precio": "$5000"},
+        {"tiempo": "1 mes", "precio": "$10000"},
+        {"tiempo": "6 meses", "precio": "$50000"},
+        {"tiempo": "1 año", "precio": "$80000"}
+         
+        ]
     }
   ]
 }

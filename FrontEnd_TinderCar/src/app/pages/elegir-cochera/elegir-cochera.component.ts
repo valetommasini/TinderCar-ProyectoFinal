@@ -23,6 +23,11 @@ export class ElegirCocheraComponent {
     precio: number;
   }[] = [];
 
+  public elegirTiempo: {
+    tiempo: string;
+    precio: string;
+  } [] = []
+
   // public carrito: any[] = []; //array para almacenar las cocheras
   constructor(private indexSv: IndexService) {}
 
@@ -36,6 +41,7 @@ export class ElegirCocheraComponent {
         this.elegirCochera = data[3].cocheras;
         this.elegirCantidad = data[3].cantidad;
         this.elegirServicio = data[3].servicios;
+        this.elegirTiempo = data[3].tiempoPrecio;
       },
       error: (err) => {
         console.log(err);
