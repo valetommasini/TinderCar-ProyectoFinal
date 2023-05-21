@@ -1,0 +1,121 @@
+{
+  "data": [
+    {
+      "ubicacion": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13619.476256367592!2d-64.1893732696704!3d-31.417733402456815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432a29d1d3f9d45%3A0xcbcd910412819792!2sCentro%2C%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1665264468395!5m2!1ses-419!2sar"
+    },
+
+    {
+      "cardsData": [
+        {
+          "id": 1,
+          "imgCard": "./assets/img/registro.jpg",
+          "tituloCard": "Registrate",
+          "descripcionCard": "Ingresá tus datos y los del vehiculo y creá una cuenta en el sitio."
+        },
+        {
+          "id": 2,
+          "imgCard": "./assets/img/registro.jpg",
+          "tituloCard": "Busqueda",
+          "descripcionCard": "Podras realizar tu busqueda segun plan, forma de pago y ubicacion."
+        },
+        {
+          "id": 3,
+          "imgCard": "./assets/img/registro.jpg",
+          "tituloCard": "Reserva y paga",
+          "descripcionCard": "Elegi la cochera que mas te convenga, reserva y paga. TinderCar lo hace simple!"
+        },
+        {
+          "id": 4,
+          "imgCard": "./assets/img/registro.jpg",
+          "tituloCard": "Beneficio",
+          "descripcionCard": "Promociones y descuentos en YPF, lubricentros y mucho más."
+        }
+      ]
+    },
+
+    {
+      "about": [
+        {
+          "nosotros": "TinderCar es una página que busca facilitar la conexión entre usuarios de automiles y propietarios de cocheras. Lo que buscamos es ayudar a los aumovilistas a encontrar cocheras de manera eficaz y sencilla para guardar su vehículo, como también facilitar a los dueños de las cocheras la difusión de las mismas y poder administrarlas de la mejor manera posible."
+        },
+        {
+          "social": [
+            { "nombre": "Facebook", "link": "https://www.facebook.com/" },
+            {
+              "nombre": "Twitter",
+              "link": "https://twitter.com/"
+            },
+            {
+              "nombre": "Instagram",
+              "link": "https://www.instagram.com/"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "cocheras": [
+        {
+          "id": 1,
+          "img": "./assets/img/c1.jpg",
+          "nombre": "Cochera Balcarce ",
+          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "precio": 500
+        },
+        {
+          "id": 2,
+          "img": "./assets/img/c2.jpg",
+          "nombre": "Cochera 2",
+          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "precio": 500
+        },
+        {
+          "id": 3,
+          "img": "./assets/img/c3.jpg",
+          "nombre": "Cochera 3",
+          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "precio": 500
+        },
+
+        {
+          "id": 4,
+          "img": "./assets/img/c4.jpg",
+          "nombre": "Cochera 4",
+          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "precio": 500
+        },
+        {
+          "id": 5,
+          "img": "./assets/img/c5.jpg",
+          "nombre": "Cochera 5",
+          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "precio": 500
+        },
+        {
+          "id": 6,
+          "img": "./assets/img/c6.jpg",
+          "nombre": "Cochera 6",
+          "descripcion": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+          "precio": 500
+        }
+      ],
+
+      "cantidad": [
+        { "autosCantidad": "Uno", "precio": 500 },
+        { "autosCantidad": "Dos", "precio": 1000 },
+        { "autosCantidad": "Tres", "precio": 1300 },
+        { "autosCantidad": "Cuatro", "precio": 1600 }
+      ],
+
+      "servicios": [
+        { "lavado": "lavado carroceria", "precio": 250 },
+        { "lavado": "lavado carroceria y tapizado", "precio": 300 },
+        {
+          "lavado": "lavado completo mas tratamiento ceramico",
+          "precio": 1600
+        }
+      ]
+    }
+  ]
+}
