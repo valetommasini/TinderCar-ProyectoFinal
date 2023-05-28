@@ -1,11 +1,12 @@
 <section>
-  <form action="#" method="post" class="form" id="form">
+  <form (submit)="sendUserForm()" [formGroup]="formGroup" formGroupName="register" action="#" method="post" class="form" id="form">
     <div class="form-title">
       <h3>Registrate</h3>
     </div>
     <div class="form-group" id="groupFirstname">
       <label for="userName" class="form-group-label">Nombre</label>
       <input
+        formControlName="firstName"
         type="text"
         class="form-group-input"
         name="firstName"
@@ -19,6 +20,7 @@
     <div class="form-group" id="groupLastname">
       <label for="lastname" class="form-group-label">Apellido</label>
       <input
+        formControlName="lastName"
         type="text"
         class="form-group-input"
         name="lastname"
@@ -31,7 +33,12 @@
     </div>
     <div class="form-group" id="groupEmail">
       <label for="email" class="form-group-label">Correo Electrónico</label>
-      <input type="email" class="form-group-input" name="email" id="email" />
+      <input
+        formControlName="email" 
+        type="email" 
+        class="form-group-input" 
+        name="email" id="email" 
+      />
       <p class="form-group-errorText">
         El email solo puede contener letras, numeros, puntos, guíones y guíon
         bajo.
@@ -39,7 +46,12 @@
     </div>
     <div class="form-group" id="groupPhone">
       <label for="phone" class="form-group-label">Telefono</label>
-      <input type="number" class="form-group-input" name="phone" id="phone" />
+      <input
+        formControlName="phone"
+        type="number" 
+        class="form-group-input" 
+        name="phone" id="phone" 
+      />
       <p class="form-group-errorText">
         El telefono solo puede contener numeros y el maximo son 14 digitos.
       </p>
@@ -47,6 +59,7 @@
     <div class="form-group" id="groupPassword">
       <label for="password" class="form-group-label">Contraseña</label>
       <input
+        formControlName="password"
         type="password"
         class="form-group-input"
         name="password"
@@ -73,6 +86,7 @@
     <div class="form-group" id="groupTerminos">
       <label class="form-group-label">
         <input
+          formControlName="terms"
           type="checkbox"
           class="form-group-label-checkbox"
           name="terms"
