@@ -30,7 +30,11 @@ export class LoginComponent {
     this.formLogin = this.formBuilder.group({
       //validaciones de usuario y contraseña
       usuario: ['', [Validators.required, Validators.pattern(this.user)]],
-      contrasenia: ['', [Validators.required, Validators.pattern(this.pass)]],
+      contrasenia: ['',
+       [Validators.required, 
+        Validators.minLength(6),
+        Validators.maxLength(15),
+        Validators.pattern(this.pass)]],
     });
   }
 

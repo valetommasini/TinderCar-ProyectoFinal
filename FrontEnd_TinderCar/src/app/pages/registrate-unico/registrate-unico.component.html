@@ -1,9 +1,17 @@
 <section>
-  <form (submit)="sendUserForm()" [formGroup]="formGroup" formGroupName="register" action="#" method="post" class="form" id="form">
+  <form
+    (submit)="sendUserForm()"
+    [formGroup]="formGroup"
+    action="#"
+    method="post"
+    class="form"
+    id="form"
+  >
     <div class="form-title">
       <h3>Registrate</h3>
     </div>
-    <div class="form-group" id="groupFirstname">
+    <!-- formGroupName="register" va en cada campo del formulario -->
+    <div class="form-group" id="groupFirstname" formGroupName="register">
       <label for="userName" class="form-group-label">Nombre</label>
       <input
         formControlName="firstName"
@@ -17,7 +25,8 @@
         El nombre tiene que ser de 4 a 16 letras.
       </p>
     </div>
-    <div class="form-group" id="groupLastname">
+
+    <div class="form-group" id="groupLastname" formGroupName="register">
       <label for="lastname" class="form-group-label">Apellido</label>
       <input
         formControlName="lastName"
@@ -31,32 +40,39 @@
         El apellido tiene que ser de 4 a 16 letras.
       </p>
     </div>
-    <div class="form-group" id="groupEmail">
+
+    <div class="form-group" id="groupEmail" formGroupName="register">
       <label for="email" class="form-group-label">Correo Electrónico</label>
       <input
-        formControlName="email" 
-        type="email" 
-        class="form-group-input" 
-        name="email" id="email" 
+
+        formControlName="email"
+        type="email"
+        class="form-group-input"
+        name="email"
+        id="email"
       />
       <p class="form-group-errorText">
         El email solo puede contener letras, numeros, puntos, guíones y guíon
         bajo.
       </p>
     </div>
-    <div class="form-group" id="groupPhone">
+
+    <div class="form-group" id="groupPhone" formGroupName="register">
       <label for="phone" class="form-group-label">Telefono</label>
       <input
         formControlName="phone"
-        type="number" 
-        class="form-group-input" 
-        name="phone" id="phone" 
+
+        type="number"
+        class="form-group-input"
+        name="phone"
+        id="phone"
       />
       <p class="form-group-errorText">
         El telefono solo puede contener numeros y el maximo son 14 digitos.
       </p>
     </div>
-    <div class="form-group" id="groupPassword">
+
+    <div class="form-group" id="groupPassword" formGroupName="register">
       <label for="password" class="form-group-label">Contraseña</label>
       <input
         formControlName="password"
@@ -69,7 +85,8 @@
         La contraseña tiene que ser de 4 a 12 digitos.
       </p>
     </div>
-    <div class="form-group" id="groupPassword2">
+
+    <div class="form-group" id="groupPassword2" formGroupName="register">
       <label for="password2" class="form-group-label"
         >Confirmar Contraseña</label
       >
@@ -83,7 +100,8 @@
         Ambas contraseñas tienen que ser iguales
       </p>
     </div>
-    <div class="form-group" id="groupTerminos">
+
+    <div class="form-group" id="groupTerminos" formGroupName="register">
       <label class="form-group-label">
         <input
           formControlName="terms"
@@ -98,6 +116,7 @@
         >
       </label>
     </div>
+
     <div class="form-messaje-error" id="formMessaje">
       <p><b>Error</b> Por favor rellena el formulario correctamente.</p>
     </div>
