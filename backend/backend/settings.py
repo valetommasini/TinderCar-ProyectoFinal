@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend1'
+    'backend1',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:4200',  #puerto Angular
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -79,12 +86,17 @@ DATABASES = {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
          'ENGINE': 'django.db.backends.mysql',
-         'NAME' : 'djangotest1', #aca tiene este nombre porque cree una diferente en mi entorno local
+        #  'NAME' : 'djangotest1', #aca tiene este nombre porque cree una diferente en mi entorno local
+         'NAME' : 'pruebaback', 
          'HOST' : 'localhost',
          'PORT' : '3306',
          #'HOST' : 'localhost',
-         'USER' : 'usuario2',
-         'PASSWORD' : 'Usuario2'
+        #  'USER' : 'usuario2',
+         'USER' : 'root',
+         'PASSWORD' : 'admin1234',
+         'OPTIONS': {
+             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+             }
          
     }
 }
