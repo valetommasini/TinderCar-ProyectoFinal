@@ -1,0 +1,38 @@
+<div class="container vh-100">
+  <div class="row d-flex align-items-center h-100">
+    <div class="col-12 d-flex justify-content-center">
+      <form
+        class="w-50 login_form"
+        [formGroup]="formLogin"
+        (ngSubmit)="enviarForm()"
+      >
+        <h3 class="text-center mb-3">Iniciar Sesion</h3>
+        <label for="email" class="form-label">Email</label>
+        <input
+          formControlName="usuario"
+          type="email"
+          [class.is-invalid]="f.usuario.errors && f.usuario.touched"
+          class="form-control mb-3"
+          placeholder="ejemplo@ejemplo.com"
+        />
+        <div class="invalid-feedback mb-3">Debes ingresar el email</div>
+
+        <label for="contrasenia" class="form-label">Contraseña</label>
+        <input
+          formControlName="contrasenia"
+          type="password"
+          [class.is-invalid]="f.contrasenia.errors && f.contrasenia.touched"
+          class="form-control mb-3"
+          placeholder="*********"
+        />
+        <div class="invalid-feedback mb-3">Debes ingresar la contraseña</div>
+
+        <input
+          class="mb-3 w-100 btn btn-ingresar"
+          type="submit"
+          value="Ingresar"
+        />
+      </form>
+    </div>
+  </div>
+</div>
