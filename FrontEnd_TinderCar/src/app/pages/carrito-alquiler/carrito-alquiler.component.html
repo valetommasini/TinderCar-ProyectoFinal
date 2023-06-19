@@ -14,15 +14,17 @@
             </thead>
             <tbody>
               <!-- Ejemplo de un producto -->
-              <tr *ngIf="cocheraSeleccionada">
-                <td>{{ cocheraSeleccionada.nombre_cochera }}</td>
-                <td>{{ "$" + precioTotal }}</td>
-                <td>
-                  <img
-                    [src]="cocheraSeleccionada.img_cochera"
-                    alt="cochera"
-                    width="100"
-                  />
+              <tr *ngFor="let item of listaCocheras">
+                <td>{{ item.nombre_cochera }}</td>
+                <td>{{ "$" + item.precio }}</td>
+                <td class="d-flex justify-content-between">
+                  <img [src]="item.img_cochera" alt="cochera" width="100" />
+                  <button
+                    class="w-100 btn"
+                    (click)="eliminar(item.nombre_cochera)"
+                  >
+                    X
+                  </button>
                 </td>
               </tr>
               <!-- Agrega más filas para mostrar otros productos -->
@@ -46,15 +48,11 @@
             </thead>
             <tbody>
               <!-- Ejemplo de un producto en el carrito -->
-              <tr *ngIf="cocheraSeleccionada">
-                <td>{{ cocheraSeleccionada.nombre_cochera }}</td>
-                <td>{{ "$" + precioTotal }}</td>
+              <tr *ngFor="let item of listaCocheras">
+                <td>{{ item.nombre_cochera }}</td>
+                <td>{{ "$" + item.precio }}</td>
                 <td>
-                  <img
-                    [src]="cocheraSeleccionada.img_cochera"
-                    alt="cochera"
-                    width="100"
-                  />
+                  <img [src]="item.img_cochera" alt="cochera" width="100" />
                 </td>
               </tr>
               <!-- Agrega más filas para mostrar otros productos en el carrito -->

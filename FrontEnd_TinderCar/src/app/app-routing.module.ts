@@ -7,6 +7,10 @@ import { RegistrateUnicoComponent } from './pages/registrate-unico/registrate-un
 import { ElegirCocheraComponent } from './pages/elegir-cochera/elegir-cochera.component';
 import { CarritoAlquilerComponent } from './pages/carrito-alquiler/carrito-alquiler.component';
 import { DetalleFacturacionComponent } from './pages/detalle-facturacion/detalle-facturacion.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CreateCocheraComponent } from './pages/dashboard/CRUD/create-cochera.component';
+import { EditCocheraComponent } from './pages/dashboard/CRUD/edit-cochera.component';
+import { TablaUsuariosComponent } from './pages/tabla-usuarios/tabla-usuarios.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
@@ -16,6 +20,10 @@ const routes: Routes = [
   { path: 'elegir', component: ElegirCocheraComponent },
   { path: 'carrito', component: CarritoAlquilerComponent },
   { path: 'detalle-facturacion', component: DetalleFacturacionComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'nueva/cocheras', component: CreateCocheraComponent },
+  { path: 'edit/cocheras/:id', component: EditCocheraComponent },
+  { path: 'tabla/usuarios', component: TablaUsuariosComponent },
   { path: '', redirectTo: 'index', pathMatch: 'full' },
 ];
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Alquiler } from 'src/app/models/alquiler';
 import { Cochera } from 'src/app/models/cochera';
+import { ItemCocheraData } from 'src/app/models/item-cochera-data';
 import { CocheraService } from 'src/app/services/cochera.service';
 import { MPagoService } from 'src/app/services/mpago.service';
 
@@ -9,14 +11,12 @@ import { MPagoService } from 'src/app/services/mpago.service';
   styleUrls: ['./elegir-cochera.component.css'],
 })
 export class ElegirCocheraComponent {
-  public tiempoElegido: any; // Variable para almacenar el tiempo seleccionado
-  public servicioElegido: number = 0; // Variable para almacenar el tiempo seleccionado
-  public precioTotal: number = 0;
-
   public cocheras: Cochera[] = [];
-  public cocheraSeleccionada: Cochera | null = null;
-  public tiemposPrecios: Cochera[] = [];
-  public serviciosPrecios: Cochera[] = [];
+  public tiemposPrecios: Alquiler[] = [];
+  public serviciosPrecios: Alquiler[] = [];
+
+  public tiempoSeleccionado: any;
+  public servicioSeleccionado: any;
 
   urlPago: string | undefined;
   constructor(
@@ -37,39 +37,67 @@ export class ElegirCocheraComponent {
         console.log(err);
       },
     });
-    this.cocheraSv.getTiemposAlquiler(1).subscribe({
+  }
+
+  tiempAlqData(item: any): void {
+    const cocheraId = item.id_cochera;
+    this.cocheraSv.getTiemposAlquiler(cocheraId).subscribe({
       next: (rta) => {
         const data = rta.cochera.tiempo_alquiler;
+        const alquileres: Alquiler[] = []; // Crear un arreglo temporal para almacenar las instancias de Alquiler
+
         for (let i = 0; i < data.length; i++) {
+          let tiempo: string;
+
           switch (data[i].tiempo) {
             case '1d':
-              const dia = (data[i].tiempo = '1 día');
+              tiempo = '1 día';
               break;
             case '15d':
-              const dias = (data[i].tiempo = '15 días');
+              tiempo = '15 días';
               break;
             case '1m':
-              const mes = (data[i].tiempo = '1 mes');
+              tiempo = '1 mes';
               break;
             case '6m':
-              const meses = (data[i].tiempo = '6 meses');
+              tiempo = '6 meses';
               break;
             case '1a':
-              const año = (data[i].tiempo = '1 año');
+              tiempo = '1 año';
               break;
             default:
+              tiempo = data[i].tiempo;
               break;
           }
+
+          const alquiler = new Alquiler(
+            // data[i].id_cochera,
+            data[i].tiempo,
+            data[i].precio,
+            data[i].servicio,
+            data[i].precio_servicio
+          );
+          alquiler.tiempo = tiempo;
+          alquileres.push(alquiler);
         }
-        this.tiemposPrecios = data;
+
+        this.tiemposPrecios = alquileres; // Asignar el arreglo de instancias de Alquiler a this.tiemposPrecios
+        console.log(this.tiemposPrecios);
       },
       error: (err) => {
         console.log(err);
       },
     });
-    this.cocheraSv.getServicios(1).subscribe({
+  }
+
+  servData(item: any): void {
+    const cocheraId = item.id_cochera;
+    console.log('ID de la cochera:', cocheraId);
+    this.cocheraSv.getServicios(cocheraId).subscribe({
       next: (rta) => {
         const data = rta.cochera.servicios;
+        console.log(data);
+
         for (let i = 0; i < data.length; i++) {
           switch (data[i].servicio) {
             case 'servicio1':
@@ -112,102 +140,55 @@ export class ElegirCocheraComponent {
     document.body.style.paddingRight = ''; //restaura el padding
   }
 
-  costoTiempo(tiempo: any): number {
-    this.tiempoElegido = tiempo.precio;
-    console.log('Costo del tiempo:', this.tiempoElegido);
-    this.tiempoElegido = tiempo;
-    // console.log('Tiempo elegido:', this.tiempoElegido);
-    return tiempo.precio;
+  selectTiempo(tiempoAlq: any): void {
+    this.tiempoSeleccionado = tiempoAlq;
+    const costoTiempo = tiempoAlq.precio;
+    console.log('Tiempo elegido: ', costoTiempo);
   }
 
-  costoServicio(servicio: any): number {
-    const selectedValue = servicio?.target?.value;
-    if (selectedValue) {
-      const selectedService = this.serviciosPrecios.find(
-        (servicio) => servicio.servicio === selectedValue
-      );
-      if (selectedService) {
-        this.servicioElegido = selectedService.precio;
-        console.log('Costo del servicio:', this.servicioElegido);
-        return selectedService.precio;
-      }
-    }
-    return 0; // Valor predeterminado en caso de que no se encuentre el servicio
+  selectServicio(): void {
+    const servicio = document.getElementById(
+      'inputGroupSelect01'
+    ) as HTMLSelectElement;
+    const opcionSeleccionada = servicio.options[servicio.selectedIndex];
+    const precioServicio =
+      opcionSeleccionada.querySelector('span')?.textContent;
+    this.servicioSeleccionado = Number(precioServicio || 0);
+    console.log('Precio del servicio:', this.servicioSeleccionado);
   }
 
-  agregar(
-    cocheraId: number,
-    tiempoAlquilerId: number,
-    servicios: number
-  ): void {
-    const cocheraSeleccionada = this.cocheras.find(
-      (cochera) => cochera.id_cochera === cocheraId
-    );
+  agregar(item: Cochera) {
+    console.log(item);
+    let precioTiempo = this.tiempoSeleccionado
+      ? this.tiempoSeleccionado.precio
+      : item.precio;
 
-    const alquilerSeleccionado = this.cocheras.find(
-      (alquiler) => alquiler.precio === tiempoAlquilerId
-    );
+    let data_item: ItemCocheraData = {
+      id_cochera: item.id_cochera ?? 0,
+      nombre_cochera: item.nombre_cochera,
+      img_cochera: item.img_cochera,
+      precio: precioTiempo,
+      precio_servicio: this.servicioSeleccionado,
+    };
 
-    const servicioSeleccionado = this.cocheras.find(
-      (servicio) => servicio.precio_servicio === servicios
-    );
+    if (localStorage.getItem('carrito') === null) {
+      //si no hay nada en el localstorage, se crea el item y se almacena en el localstorage
+      let carrito: ItemCocheraData[] = [];
+      carrito.push(data_item);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    } else {
+      //para almacenar mas de 1 cochera
+      //si hay un item en el localstorage lo recupero como string
+      let storage = localStorage.getItem('carrito') as string;
 
-    if (cocheraSeleccionada && alquilerSeleccionado && servicioSeleccionado) {
-      // MUESTRA EL OBJETO COMPLETO
-      this.cocheraSv.cocheraSeleccionada = cocheraSeleccionada;
-      this.cocheraSeleccionada = cocheraSeleccionada;
-      console.log(cocheraSeleccionada);
+      //parseo los datos obtenidos en la variable storage
+      let carrito = JSON.parse(storage);
 
-      const cocheraElegida = (this.mPagoSv.cocheraId = cocheraId);
-      console.log('Cochera', cocheraElegida);
+      //pusheo los datos a carrito
+      carrito.push(data_item);
 
-      const alqulerElegido = (this.mPagoSv.tiempoAlquilerId =
-        alquilerSeleccionado.id_cochera);
-      console.log('Alquiler elegido', alqulerElegido);
-
-      const servicioElegido = (this.mPagoSv.servicios = [
-        servicioSeleccionado.precio_servicio,
-      ]);
-      console.log('Servicio elegido', servicioElegido);
-
-      this.suma();
-    }
-  }
-
-  suma(): void {
-    if (this.tiempoElegido && this.servicioElegido) {
-      const total = this.tiempoElegido.precio + this.servicioElegido;
-      this.cocheraSv.setPrecioTotal(total);
-      console.log('El total es:', total);
+      //seteo el item, estableciendo una clave "carrito" con  JSON.stringify(carrito)
+      localStorage.setItem('carrito', JSON.stringify(carrito));
     }
   }
 }
-
-// agregar(
-//   cocheraId: number,
-//   precio_alquiler: number,
-//   servicio_precio: number
-// ): void {
-//   const cocheraSeleccionada = this.cocheras.find(
-//     (cochera) => cochera.id_cochera === cocheraId
-//   );
-
-//   const alquilerSeleccionado = this.cocheras.find(
-//     (alquiler) => alquiler.precio === precio_alquiler
-//   );
-
-//   const servicioSeleccionado = this.cocheras.find(
-//     (servicio) => servicio.precio_servicio === servicio_precio
-//   );
-//   if (cocheraSeleccionada) {
-//     this.cocheraSv.cocheraSeleccionada = cocheraSeleccionada;
-//     this.cocheraSeleccionada = cocheraSeleccionada;
-//     console.log(cocheraSeleccionada);
-
-//     // -------------------------------------
-//     this.mPagoSv.cocheraId = cocheraId;
-//     this.mPagoSv.tiempoAlquilerId = this.tiempoElegido?.id;
-//     this.mPagoSv.servicios = [this.servicioElegido];
-//     this.suma();
-//   }
-// }

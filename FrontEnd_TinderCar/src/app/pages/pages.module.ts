@@ -10,6 +10,11 @@ import { ElegirCocheraComponent } from './elegir-cochera/elegir-cochera.componen
 import { CarritoAlquilerComponent } from './carrito-alquiler/carrito-alquiler.component';
 import { DetalleFacturacionComponent } from './detalle-facturacion/detalle-facturacion.component';
 import { MPagoService } from '../services/mpago.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateCocheraComponent } from './dashboard/CRUD/create-cochera.component';
+import { EditCocheraComponent } from './dashboard/CRUD/edit-cochera.component';
+import { TablaUsuariosComponent } from './tabla-usuarios/tabla-usuarios.component';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 
 @NgModule({
   declarations: [
@@ -20,8 +25,18 @@ import { MPagoService } from '../services/mpago.service';
     ElegirCocheraComponent,
     CarritoAlquilerComponent,
     DetalleFacturacionComponent,
+    DashboardComponent,
+    CreateCocheraComponent,
+    EditCocheraComponent,
+    TablaUsuariosComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    NgxTypedJsModule,
+  ],
   exports: [
     HomeComponent,
     IndexComponent,
@@ -30,7 +45,21 @@ import { MPagoService } from '../services/mpago.service';
     ElegirCocheraComponent,
     CarritoAlquilerComponent,
     DetalleFacturacionComponent,
+    DashboardComponent,
   ],
   providers: [MPagoService],
+  bootstrap: [
+    HomeComponent,
+    IndexComponent,
+    LoginComponent,
+    RegistrateUnicoComponent,
+    ElegirCocheraComponent,
+    CarritoAlquilerComponent,
+    DetalleFacturacionComponent,
+    DashboardComponent,
+    CreateCocheraComponent,
+    EditCocheraComponent,
+    TablaUsuariosComponent,
+  ],
 })
 export class PagesModule {}

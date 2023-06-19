@@ -7,6 +7,10 @@ cada vez que creo una clase, ejecuto los comandos en la carpeta backend principa
 1. python manage.py makemigrations backend1
 2. python manage.py migrate
 
+
+esto crea un token para el usuario que tengo autenticado:
+python ./manage.py drf_create_token admin 
+
 en workbench
 INSERT INTO backend1_tiempoalquiler (cochera_id, tiempo, precio) VALUES
 (1, '1d', 1000),

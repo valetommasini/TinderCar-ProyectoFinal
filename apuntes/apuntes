@@ -1,0 +1,148 @@
+
+
+# class CocheraView(View):
+#     @method_decorator(csrf_exempt)
+#     def dispatch(self, request, *args, **kwargs):
+#         return super().dispatch(request, *args, **kwargs)
+
+#     def get(self, request, id=0):
+#         # GET DETAIL
+#         if(id>0):
+#             cocheras = list(Cochera.objects.filter(id_cochera=id).values())
+#             if len(cocheras)>0:
+#                 cochera=cocheras[0]
+#                 tiempo_alquiler = TiempoAlquiler.objects.filter(cochera=cochera['id_cochera']).values('tiempo', 'precio')
+#                 cochera['tiempo_alquiler'] = list(tiempo_alquiler)
+#                 servicios = list(Servicio.objects.filter(cochera=cochera['id_cochera']).values('servicio', 'precio'))
+#                 cochera['servicios'] = servicios
+#                 data = {"message": "Success", "cochera": cochera}
+#             else:
+#                 data = {"message":"Not Found..."}
+#             return JsonResponse(data)    
+        
+#         else:
+#             # GET ALL
+#             cocheras = list(Cochera.objects.values())
+#             for cochera in cocheras:
+#                 tiempo_alquiler = TiempoAlquiler.objects.filter(cochera=cochera['id_cochera']).values('tiempo', 'precio')
+#                 cochera['tiempo_alquiler'] = list(tiempo_alquiler)
+#                 servicios = list(Servicio.objects.filter(cochera=cochera['id_cochera']).values('servicio', 'precio'))
+#                 cochera['servicios'] = servicios
+#             if len(cocheras)>0:
+#                 data = {"message":"Success", "cocheras":cocheras}
+#             else:
+#                 data = {"message":"Not Found..."}
+#             return JsonResponse(data)
+
+
+# def create_order(cochera, tiempo_alquiler, servicios):
+#     ACCESS_TOKEN = "TEST-865520782224511-052712-77c0791960cbab0081032c9906fc5539-1384417080"
+#     sdk = mercadopago.SDK(ACCESS_TOKEN)
+
+#     # Lógica para generar los datos de la preferencia de pago
+#     preference_data = {
+#         "items" : [
+#             {
+#                 "title": cochera.nombre_cochera,
+#                 "quantity": 1,
+#                 "unit_price": tiempo_alquiler.precio + sum(servicio.precio for servicio in servicios),
+#                 "currency_id": "ARS",
+#             }
+#         ],
+#         "notification_url": "",
+#         "back_urls": {
+#             "success": "http://localhost:4200/",
+#             "failure": "",
+#             "pending": "",
+#         },
+#         "auto_return": "all",
+#     }
+
+#     result = sdk.preference().create(preference_data)
+
+#     # Variable donde guardo la URL de pago
+#     payment_url = result["response"]["init_point"]
+
+#     return payment_url
+
+# class AlquilarCocheraView(View):
+#     aca deberia ir el metodo de pagar
+
+# class PaymentService:
+#     def __init__(self):
+#         self.access_token = "TEST-865520782224511-052712-77c0791960cbab0081032c9906fc5539-1384417080"
+#         self.sdk = mercadopago.SDK(self.access_token)
+
+#     def create_payment_mercadopago(self, name, price, unit):
+#         preference_data = {
+#             "items": [
+#                 {
+#                     "title": name,
+#                     "quantity": int(unit),
+#                     "currency_id": "ARS",
+#                     "unit_price": float(price),
+#                 }
+#             ],
+#             "notification_url": "",
+#             "back_urls": {
+#                 "success": "http://localhost:4200/",
+#                 "failure": "",
+#                 "pending": ""
+#             },
+#             "auto_return": "all"
+#         }
+#         result = self.sdk.preference().create(preference_data)
+#         payment_url = result["response"]["init_point"]
+#         return payment_url
+
+# class PaymentController:
+#     def __init__(self, payment_service):
+#         self.payment_service = payment_service
+    
+#     def get_mp_link(self, req, res):
+#         name = req.query.get('name')
+#         price = req.query.get('price')
+#         unit = req.query.get('unit')
+#         try:
+#             checkout = self.payment_service.create_payment_mercadopago(
+#                 name,
+#                 price,
+#                 unit
+#             )
+#             return res.redirect(checkout)
+        
+#         except Exception as err:
+#             return res.status(500).json({
+#                 'error': True,
+#                 'msg': 'Hubo un error con Mercado Pago'
+#             })
+
+
+# def create_order(req): 
+#     ACCESS_TOKEN = "TEST-865520782224511-052712-77c0791960cbab0081032c9906fc5539-1384417080"
+#     sdk = mercadopago.SDK(ACCESS_TOKEN)
+
+#     preference_data = {
+#     # Creacion de ítem
+#         "items" : [
+#             {
+#                 "title":"Cochera",
+#                 "quantity":1,
+#                 "unit_price":1000,
+#                 "currency_id":"ARS",}
+#             ],
+#         "notification_url":"",
+#         "back_urls":{
+#             "success":"http://localhost:4200/",
+#             "failure":"",
+#             "pending":""
+#             },
+#         "auto_return":"all"
+#         }
+
+#     result = sdk.preference().create(preference_data)
+
+#     #variale donde guardo la url de pago
+#     payment_url = result["response"]["init_point"]
+#     print(result)
+#     return JsonResponse({"payment_url":payment_url})

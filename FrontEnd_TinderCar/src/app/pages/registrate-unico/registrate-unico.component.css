@@ -154,6 +154,11 @@
   color: #fff;
 }
 
+.form-group-select {
+  grid-column: span 2;
+}
+
+
 input.ng-invalid.ng-touched {
   border:solid 4px tomato;
 

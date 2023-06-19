@@ -12,7 +12,6 @@ export class MPagoService {
   public cocheraId: number = 0;
   public tiempoAlquilerId: number = 0;
   public servicios: number[] = [];
-  public precioTotal: number = 0;
 
   constructor(private http: HttpClient) {}
   realizarPago(

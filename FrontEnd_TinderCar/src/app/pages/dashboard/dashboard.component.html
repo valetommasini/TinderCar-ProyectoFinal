@@ -1,0 +1,298 @@
+<div class="container">
+  <div *ngIf="isLogged; else loggedOut">
+    <h2 class="text-center text-dark mb-5">Dashboard</h2>
+    <!-- <h2 class="text-center text-light">Bienvenido {{ nombreUsuario }}</h2> -->
+    <main class="container-fluid">
+      <section class="row dashboard">
+        <!-- ASIDE - BARRA DE ADMINISTRACION -->
+        <article class="col-md-3 col-sm-6">
+          <div class="d-flex justify-content-center">
+            <div
+              class="nav flex-column nav-pills me-3"
+              id="v-pills-tab"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <!-- BTN-COCHERA -->
+              <button
+                class="nav-link active"
+                id="v-pills-cocheras-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-cocheras"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-cocheras"
+                aria-selected="true"
+              >
+                Edicion de cocheras
+              </button>
+
+              <!-- BTN-PRECIO-TIEMPO -->
+              <button
+                class="nav-link"
+                id="v-pills-hb-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-hb"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-hb"
+                aria-selected="false"
+              >
+                Precios por tiempo
+              </button>
+
+              <!-- BTN-PRECIO-SERVICIO -->
+
+              <button
+                class="nav-link"
+                id="v-pills-hd-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-hd"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-hd"
+                aria-selected="false"
+              >
+                Precios por servicios
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- MODIFICACION DE DATOS -->
+        <article class="col-md-9 col-sm-6">
+          <!------------------------>
+          <!-------CONTENEDOR------->
+          <!------------------------>
+          <div class="tab-content" id="v-pills-tabContent">
+            <!----------------------->
+            <!-------COCHERAS------->
+            <!----------------------->
+            <div
+              class="tab-pane fade show active"
+              id="v-pills-cocheras"
+              role="tabpanel"
+              aria-labelledby="v-pills-cocheras-tab"
+              tabindex="0"
+            >
+              <!-- cambio de cocheras -->
+              <h3>Cocheras</h3>
+
+              <div class="mb-3" *ngFor="let cochera of cocheras">
+                <!--===========================-->
+                <!--======EDICION IMAGEN ======-->
+                <!--===========================-->
+                <div class="content-img mb-4 w-50">
+                  <p class="subtitulo">{{ cochera.nombre_cochera }}</p>
+                  <img
+                    [src]="cochera.img_cochera"
+                    class="card-img-top"
+                    alt="imagen ilustrativa de la cochera"
+                  />
+                </div>
+
+                <!--================================-->
+                <!--======EDICION COCHERA ======-->
+                <!--================================-->
+                <div class="content-img mb-4 w-50">
+                  <label for="desc-emp" class="form-label">Descripcion</label>
+                  <textarea
+                    class="form-control mb-2"
+                    type="text"
+                    id="desc-emp"
+                    [value]="cochera.descripcion_cochera"
+                    disabled
+                  >
+                  </textarea>
+                </div>
+                <!--======================================-->
+                <!--======EDITAR, GUARDAR, CANCELAR ======-->
+                <!--======================================-->
+                <div class="d-flex flex-row w-50">
+                  <button
+                    type="button"
+                    class="btn btn-primary me-5 mb-3"
+                    [routerLink]="'/edit/cocheras/' + cochera.id_cochera"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger me-5 mb-3"
+                    (click)="deleteCochera(cochera.id_cochera!)"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+                <hr />
+              </div>
+
+              <div class="agregar w-100 d-flex justify-content-center">
+                <button
+                  type="button"
+                  class="agregar btn btn-primary"
+                  title="agregar"
+                  routerLink="/nueva/cocheras"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <!------------------------------------->
+            <!-------ALQUILER POR TIEMPO DE-------->
+            <!------------------------------------->
+            <div
+              class="tab-pane fade"
+              id="v-pills-hb"
+              role="tabpanel"
+              aria-labelledby="v-pills-hb-tab"
+              tabindex="0"
+            >
+              <h3>Precio por alquiler por tiempo</h3>
+              <div class="mb-3">
+                <!-- CARD -->
+                <div class="content-img mb-4 w-50">
+                  <div class="mb-4">
+                    <p class="subtitulo">1 dia</p>
+                    <input class="form-control" type="text" disabled />
+                  </div>
+
+                  <div class="mb-4">
+                    <p class="subtitulo">15 dias</p>
+                    <input class="form-control" type="text" disabled />
+                  </div>
+
+                  <div class="mb-4">
+                    <p class="subtitulo">6 meses</p>
+                    <input class="form-control" type="text" disabled />
+                  </div>
+
+                  <div class="mb-4">
+                    <p class="subtitulo">1 año</p>
+                    <input class="form-control" type="text" disabled />
+                  </div>
+
+                  <hr />
+                </div>
+
+                <div class="d-flex flex-row w-50">
+                  <button type="button" class="btn btn-primary me-3 mb-3">
+                    Editar
+                  </button>
+                  <button type="button" class="btn btn-danger mb-3">
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+
+              <div class="agregar w-100 d-flex justify-content-center">
+                <button
+                  type="button"
+                  class="agregar btn btn-primary"
+                  routerLink="/nuevaHabilidadblanda"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <!--------------------------------->
+            <!-------HABILIDADES DURAS--------->
+            <!--------------------------------->
+            <div
+              class="tab-pane fade"
+              id="v-pills-hd"
+              role="tabpanel"
+              aria-labelledby="v-pills-hd-tab"
+              tabindex="0"
+            >
+              <h3>Precios por servicio</h3>
+
+              <div class="mb-3">
+                <!-- CARD -->
+                <div class="content-img mb-4 w-50">
+                  <div class="mb-4">
+                    <p class="subtitulo">Lavado</p>
+                    <input class="form-control" type="text" disabled />
+                  </div>
+
+                  <div class="mb-4">
+                    <p class="subtitulo">Lavado y tapizado</p>
+                    <input class="form-control" type="text" disabled />
+                  </div>
+
+                  <div class="mb-4">
+                    <p class="subtitulo">
+                      Servicio completo mas tratamiento ceramico
+                    </p>
+                    <input class="form-control" type="text" disabled />
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row w-50">
+                  <button type="button" class="btn btn-primary me-3 mb-3">
+                    Editar
+                  </button>
+                  <button type="button" class="btn btn-danger mb-3">
+                    Eliminar
+                  </button>
+                </div>
+                <hr />
+              </div>
+
+              <div class="agregar w-100 d-flex justify-content-center">
+                <button
+                  type="button"
+                  class="agregar btn btn-primary"
+                  routerLink="/nuevaHabilidaddura"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+</div>
+
+<ng-template #loggedOut>
+  <div class="content">
+    <div class="card w-50 mx-auto">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <p class="mensaje mb-0">Ooops!</p>
+        </div>
+
+        <div class="d-flex">
+          <div class="min d-flex justify-content-center align-items-center">
+            <span class="min-icon"></span>
+          </div>
+          <div class="max d-flex justify-content-center align-items-center">
+            <i class="fas fa-window-restore"></i>
+          </div>
+          <div class="cerrar d-flex justify-content-center align-items-center">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- <h5 class="card-title">Special title treatment</h5> -->
+
+        <div
+          class="d-flex flex-column justify-content-center align-items-center"
+        >
+          <h1 class="card-text text-center"><span>404</span> ERROR!</h1>
+          <img
+            class="w-50 mb-5"
+            src="../../../assets/img/error.jpg"
+            alt="error 404"
+          />
+          <button class="btn btn-error" routerLink="/">Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
