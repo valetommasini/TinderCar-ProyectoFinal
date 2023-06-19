@@ -153,3 +153,6 @@
 .form h5 {
   color: #fff;
 }
+.form-group-select {
+  grid-column: span 2;
+}

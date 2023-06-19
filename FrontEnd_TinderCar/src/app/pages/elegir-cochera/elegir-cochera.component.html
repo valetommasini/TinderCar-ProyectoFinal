@@ -2,21 +2,22 @@
   <div class="row">
     <div
       class="col-12 col-lg-4 d-flex flex-wrap justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between"
-      *ngFor="let data of cocheras"
+      *ngFor="let item of cocheras"
     >
       <div class="card mx-auto mb-5" style="width: 25rem">
-        <img [src]="data.img_cochera" class="card-img-top" alt="parking1" />
+        <img [src]="item.img_cochera" class="card-img-top" alt="parking1" />
         <div class="card-body">
-          <h5 class="card-title">{{ data.nombre_cochera }}</h5>
+          <h5 class="card-title">{{ item.nombre_cochera }}</h5>
           <p class="card-text">
-            {{ data.descripcion_cochera }}
+            {{ item.descripcion_cochera }}
           </p>
           <!-- Button trigger modal -->
           <button
             type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
-            [attr.data-bs-target]="'#exampleModal-' + getIndex(data)"
+            (click)="tiempAlqData(item); servData(item)"
+            [attr.data-bs-target]="'#exampleModal-' + getIndex(item)"
           >
             Alquilar
           </button>
@@ -24,7 +25,7 @@
           <!-- Modal -->
           <div
             class="modal fade"
-            [id]="'exampleModal-' + getIndex(data)"
+            [id]="'exampleModal-' + getIndex(item)"
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
@@ -33,7 +34,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    {{ data.nombre_cochera }}
+                    {{ item.nombre_cochera }}
                   </h1>
                   <button
                     type="button"
@@ -45,7 +46,7 @@
                 <div class="modal-body fw-semibold">
                   <div class="img-cochera">
                     <img
-                      [src]="data.img_cochera"
+                      [src]="item.img_cochera"
                       class="card-img-top"
                       alt="parking1"
                     />
@@ -64,26 +65,18 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr *ngFor="let tiempo of tiemposPrecios">
-                                      <td>{{ tiempo.tiempo }}</td>
+                                    <tr
+                                      *ngFor="let tiempoAlq of tiemposPrecios"
+                                    >
+                                      <td>{{ tiempoAlq.tiempo }}</td>
                                       <td>
-                                        $ <span>{{ tiempo.precio }}</span>
+                                        $ <span>{{ tiempoAlq.precio }}</span>
                                       </td>
                                       <td>
                                         <button
                                           type="button"
                                           class="btn btn-primary"
-                                          (click)="
-                                            agregar(
-                                              data.id_cochera,
-                                              data.precio_servicio,
-                                              data.precio
-                                            );
-                                            costoTiempo(tiempo)
-                                          "
-                                          [class.t_elegido]="
-                                            tiempo === tiempoElegido
-                                          "
+                                          (click)="selectTiempo(tiempoAlq)"
                                         >
                                           <!-- cerrarModal(); -->
                                           <!-- routerLink="/detalle-facturacion" -->
@@ -112,15 +105,12 @@
                               <select
                                 class="form-select justify-content-center"
                                 id="inputGroupSelect01"
-                                (change)="costoServicio($event)"
+                                (change)="selectServicio()"
                               >
                                 <option selected>Seleccione</option>
-                                <option
-                                  *ngFor="let servicio of serviciosPrecios"
-                                  [value]="servicio.servicio"
-                                >
-                                  {{ servicio.servicio }}
-                                  <span>{{ "$" + servicio.precio }}</span>
+                                <option *ngFor="let serv of serviciosPrecios">
+                                  {{ serv.servicio }}
+                                  <span>{{ "$" + serv.precio }}</span>
                                 </option>
                               </select>
                             </div>
@@ -133,31 +123,14 @@
                         type="button"
                         class="btn btn-secondary"
                         routerLink="/carrito"
-                        *ngIf="tiemposPrecios; servicios"
-                        (click)="
-                          cerrarModal();
-                          agregar(
-                            data.id_cochera,
-                            data.precio_servicio,
-                            data.precio
-                          );
-                          suma()
-                        "
+                        (click)="cerrarModal(); agregar(item)"
                       >
                         Agregar al Carrito
                       </button>
                       <button
                         type="button"
                         class="btn btn-primary"
-                        (click)="
-                          cerrarModal();
-                          agregar(
-                            data.id_cochera,
-                            data.precio_servicio,
-                            data.precio
-                          );
-                          suma()
-                        "
+                        (click)="cerrarModal(); agregar(item)"
                         routerLink="/detalle-facturacion"
                       >
                         Alquilar

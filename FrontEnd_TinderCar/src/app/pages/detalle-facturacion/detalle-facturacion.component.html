@@ -51,15 +51,11 @@
             </thead>
             <tbody>
               <!-- Ejemplo de un producto en el carrito -->
-              <tr *ngIf="cocheraSeleccionada">
-                <td>{{ cocheraSeleccionada.nombre_cochera }}</td>
-                <td>{{ "$" + precioTotal }}</td>
+              <tr *ngFor="let item of listaCocheras">
+                <td>{{ item.nombre_cochera }}</td>
+                <td>${{ item.precio + item.precio_servicio }}</td>
                 <td>
-                  <img
-                    [src]="cocheraSeleccionada.img_cochera"
-                    alt="cochera"
-                    width="100"
-                  />
+                  <img [src]="item.img_cochera" alt="cochera" width="100" />
                 </td>
               </tr>
               <!-- Agrega más filas para mostrar otros productos en el carrito -->
@@ -104,6 +100,14 @@
             </button>
             <button class="btn btn-outline-secondary" type="button">
               Volver Al Carrito
+            </button>
+            <button
+              type="button "
+              class="btn btn-outline-danger"
+              routerLink="/"
+              (click)="vaciarCarrito()"
+            >
+              Cancelar alquiler
             </button>
           </div>
         </div>

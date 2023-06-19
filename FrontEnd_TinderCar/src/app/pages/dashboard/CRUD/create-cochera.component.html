@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row align-items-strech">
+    <div class="col col-md-5 col-lg-5 col-xl-6 cochera d-none d-lg-block"></div>
+
+    <div class="col">
+      <h2 class="text-center my-4">Nueva cochera</h2>
+
+      <form (ngSubmit)="onCreateCochera()" novalidate>
+        <div class="mb-3 form-group">
+          <label class="text-dark" for="nombre">Nombre de la cochera</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombre_cochera"
+            [(ngModel)]="nombre_cochera"
+            required
+          />
+        </div>
+        <div class="mb-3 form-group">
+          <label class="text-dark" for="imgCochera">Imagen (URL)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="img_cochera"
+            name="imgCochera"
+            [(ngModel)]="img_cochera"
+            required
+          />
+        </div>
+        <div class="mb-3 form-group">
+          <label class="text-dark" for="descripcion ">Descripcion</label>
+          <textarea
+            class="form-control"
+            id="descripcion"
+            name="descripcion"
+            [(ngModel)]="descripcion_cochera"
+            required
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+
+        <div class="mb-3 form-group">
+          <button class="btn btn-outline-success btn-block">Agregar</button>
+          <button
+            class="btn btn-outline-success mx-3 btn-block"
+            routerLink="/dashboard"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

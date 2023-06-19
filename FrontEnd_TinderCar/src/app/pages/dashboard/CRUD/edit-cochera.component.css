@@ -1,0 +1,36 @@
+.margin {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.cochera {
+  background-image: url(../../../../assets/img/img_form_add_cochera.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.container {
+  color: #333;
+  width: 85%;
+  border-radius: 0.25rem;
+  background-color: rgba(15, 15, 15, 0.24);
+  box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.521);
+}
+
+.form-control {
+  color: #333;
+  resize: none;
+}
+.form-control:focus {
+  color: #333;
+  /* background-color: rgba(179, 179, 179, 0.164); */
+}
+.btn {
+  color: #fff;
+  border: 1px solid rgb(0, 172, 238);
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: rgb(0, 172, 238);
+  box-shadow: 0px 0px 12px -1px rgb(0, 172, 238);
+}

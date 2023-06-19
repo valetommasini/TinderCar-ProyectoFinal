@@ -1,15 +1,16 @@
 <section>
-  <form action="#" method="post" class="form" id="form">
+  <form class="form" (ngSubmit)="createUsuario()" novalidate>
     <div class="form-title">
       <h3>Registrate</h3>
     </div>
     <div class="form-group" id="groupFirstname">
-      <label for="userName" class="form-group-label">Nombre</label>
+      <label for="nombre" class="form-group-label">Nombre</label>
       <input
+        id="nombre"
         type="text"
         class="form-group-input"
-        name="firstName"
-        id="firstName"
+        name="nombre_usuario"
+        [(ngModel)]="nombre_usuario"
         placeholder="John"
       />
       <p class="form-group-errorText">
@@ -17,12 +18,13 @@
       </p>
     </div>
     <div class="form-group" id="groupLastname">
-      <label for="lastname" class="form-group-label">Apellido</label>
+      <label for="apellio" class="form-group-label">Apellido</label>
       <input
+        id="apellio"
         type="text"
         class="form-group-input"
-        name="lastname"
-        id="lastname"
+        name="apellido_usuario"
+        [(ngModel)]="apellido_usuario"
         placeholder="Doe"
       />
       <p class="form-group-errorText">
@@ -31,52 +33,82 @@
     </div>
     <div class="form-group" id="groupEmail">
       <label for="email" class="form-group-label">Correo Electrónico</label>
-      <input type="email" class="form-group-input" name="email" id="email" />
+      <input
+        id="email"
+        type="email"
+        class="form-group-input"
+        name="correo_usuario"
+        [(ngModel)]="correo_usuario"
+      />
       <p class="form-group-errorText">
         El email solo puede contener letras, numeros, puntos, guíones y guíon
         bajo.
       </p>
     </div>
     <div class="form-group" id="groupPhone">
-      <label for="phone" class="form-group-label">Telefono</label>
-      <input type="number" class="form-group-input" name="phone" id="phone" />
+      <label for="telefono" class="form-group-label">Telefono</label>
+      <input
+        id="telefono"
+        type="number"
+        class="form-group-input"
+        name="telefono_usuario"
+        [(ngModel)]="telefono_usuario"
+      />
       <p class="form-group-errorText">
         El telefono solo puede contener numeros y el maximo son 14 digitos.
       </p>
     </div>
     <div class="form-group" id="groupPassword">
-      <label for="password" class="form-group-label">Contraseña</label>
+      <label
+        for="password"
+        class="form-group-label"
+        name="contrasenia_usuario"
+        [(ngModel)]="contrasenia_usuario"
+        >Contraseña</label
+      >
       <input
+        id="password"
         type="password"
         class="form-group-input"
         name="password"
-        id="password"
       />
       <p class="form-group-errorText">
         La contraseña tiene que ser de 4 a 12 digitos.
       </p>
     </div>
     <div class="form-group" id="groupPassword2">
-      <label for="password2" class="form-group-label"
+      <label for="confirm-password" class="form-group-label"
         >Confirmar Contraseña</label
       >
       <input
+        id="confirm-password"
         type="password"
         class="form-group-input"
-        name="password2"
-        id="password2"
+        name="contrasenia_usuario"
+        [(ngModel)]="contrasenia_usuario"
       />
       <p class="form-group-errorText">
         Ambas contraseñas tienen que ser iguales
       </p>
     </div>
+
+    <div class="form-group form-group-select">
+      <label class="form-group-label" for="rol">Seleccione su rol </label>
+      <select class="form-select" name="roles" id="rol" [(ngModel)]="rol">
+        <option value="Seleccionar" disabled selected>Seleccionar</option>
+        <option value="Administrador" id="admin">Administrador</option>
+        <option value="Usuario" id="user">Usuario</option>
+      </select>
+    </div>
+
     <div class="form-group" id="groupTerminos">
       <label class="form-group-label">
         <input
+          id="terms"
           type="checkbox"
           class="form-group-label-checkbox"
-          name="terms"
-          id="terms"
+          name="aceptar_terminos"
+          [(ngModel)]="aceptar_terminos"
         />
         Aceptos los
         <a href="#" class="form-group-label-checkbox-link"
@@ -84,6 +116,7 @@
         >
       </label>
     </div>
+
     <div class="form-messaje-error" id="formMessaje">
       <p><b>Error</b> Por favor rellena el formulario correctamente.</p>
     </div>
@@ -92,7 +125,7 @@
     </div>
     <div class="form-group form-group-btn">
       <button type="submit" class="form-group-btn-send">Enviar</button>
-      <a href="/login" class="form-group-link">¿Ya tenes una cuenta?</a>
+      <a routerLink="/login" class="form-group-link">¿Ya tenes una cuenta?</a>
     </div>
   </form>
 </section>
