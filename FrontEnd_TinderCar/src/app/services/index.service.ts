@@ -7,7 +7,7 @@ import { environment } from 'src/enviroment/enviroment';
   providedIn: 'root',
 })
 export class IndexService {
-  URL = `${environment.apiUrl}`;
+  URL = `${environment.apiJson}`;
   constructor(private http: HttpClient) {}
 
   public getAllData(): Observable<any> {

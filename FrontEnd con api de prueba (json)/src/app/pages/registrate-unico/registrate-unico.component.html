@@ -1,0 +1,203 @@
+<section>
+  <form [formGroup]="form" action="#" method="post" class="form" id="form">
+    <div class="form-title">
+      <h3>Registrate</h3>
+    </div>
+    <div class="form-group" id="groupFirstname">
+      <label for="userName" class="form-group-label">Nombre</label>
+      <input
+        type="text" formControlName="firstName"
+        class="form-group-input"
+        name="firstName"
+        id="firstName"
+        placeholder="John"
+      />
+        <!--<div class="alert alert-danger mt-2" [hidden]="firstName?.valid || firstName?.pristine" >
+        El campo es requerido
+      </div>-->
+
+    <div *ngIf="firstName?.errors && firstName?.touched"> 
+      
+      <p *ngIf="firstName?.hasError('required')" class="text-danger">
+        El nombre es requerido
+      </p>
+      
+      <p *ngIf="firstName?.errors?.['minlength']" class="text-danger">
+        El nombre tiene que ser de más de 4 letras.
+      </p>
+
+      <p *ngIf="firstName?.errors?.['maxlength']" class="text-danger">
+        El nombre tiene que ser de más de 16 letras.
+      </p>
+    </div>
+
+    </div>
+    <div class="form-group" id="groupLastname">
+      <label for="lastname" class="form-group-label">Apellido</label>
+      <input
+        type="text" formControlName="lastname"
+        class="form-group-input"
+        name="lastname"
+        id="lastname"
+        placeholder="Doe"
+      />
+
+      <!--<div class="alert alert-danger mt-2" [hidden]="lastname?.valid || lastname?.pristine" >
+        El campo es requerido
+      </div>-->
+    
+
+    <div *ngIf="lastname?.errors && lastname?.touched">
+
+      <p *ngIf="lastname?.hasError('required')" class="text-danger">
+        El apellido es requerido
+      </p>
+
+      <p *ngIf="lastname?.errors?.['minlength']" class="text-danger">
+        El apellido tiene que ser de más de 4 letras.
+      </p>
+    </div>
+  </div>
+
+      <!--<p class="form-group-errorText">
+        El apellido tiene que ser de 4 a 16 letras.
+      </p>-->
+
+    
+    <div class="form-group" id="groupEmail">
+      <label for="email" class="form-group-label">Correo Electrónico</label>
+      <input type="email" formControlName="email" class="form-group-input" name="email" id="email" />
+      
+      <!--<div class="alert alert-danger mt-2" [hidden]="email?.valid || email?.pristine" >
+
+        <span *ngIf="email?.errors?.['required']"> 
+        El email es obligatorio
+      </span>
+
+      <span *ngIf="email?.errors?.['email']"> 
+        El email debe ser valido
+      </span>
+      </div>-->
+
+      <div *ngIf="email?.errors && email?.touched">
+
+        <p *ngIf="email?.hasError('required')" class="text-danger">
+          El email es requerido.
+        </p>
+  
+        <p *ngIf="email?.errors?.['email']" class="text-danger">
+          El email debe ser válido.
+        </p>
+      </div>
+      
+    </div>
+    <div class="form-group" id="groupPhone">
+      <label for="phone" class="form-group-label">Telefono</label>
+      <input type="text" formControlName="phone" class="form-group-input" name="phone" id="phone" placeholder="3510000000"/>
+      
+      <!--<div class="alert alert-danger mt-2" [hidden]="phone?.valid || phone?.pristine" >
+        El campo es requerido
+      </div>-->
+
+      <div *ngIf="phone?.errors && phone?.touched">
+
+        <p *ngIf="phone?.hasError('required')" class="text-danger">
+          El teléfono es requerido.
+        </p>
+  
+        <p *ngIf="phone?.errors?.['minlength']" class="text-danger">
+          El teléfono debe contener al menos 8 números.
+        </p>
+        <p *ngIf="phone?.errors?.['pattern']" class="text-danger">
+          Debe ingresar números.
+        </p>
+      </div>
+
+      <!--<p class="form-group-errorText">
+        El telefono solo puede contener numeros y el maximo son 14 digitos.
+      </p>-->
+    </div>
+    <div class="form-group" id="groupPassword">
+      <label for="password" class="form-group-label">Contraseña</label>
+      <input
+        type="password" formControlName="password"
+        class="form-group-input"
+        name="password"
+        id="password"
+      />
+      <!--<div class="alert alert-danger mt-2" [hidden]="password?.valid || password?.pristine" >
+        El campo es requerido
+      </div>-->
+
+      <div *ngIf="password?.errors && password?.touched">
+
+        <p *ngIf="password?.hasError('required')" class="text-danger">
+          La contraseña es requerida.
+        </p>
+  
+        <p *ngIf="password?.errors?.['minlength']" class="text-danger">
+          La contraseña debe contener al menos 8 caracteres.
+        </p>
+      </div>
+      <!--<p class="form-group-errorText">
+        La contraseña tiene que ser de 4 a 12 digitos.
+      </p>-->
+    </div>
+    <div class="form-group" id="groupPassword2">
+      <label for="password2" class="form-group-label"
+        >Confirmar Contraseña</label
+      >
+      <input
+        type="password" formControlName="password2"
+        class="form-group-input"
+        name="password2"
+        id="password2"
+      />
+
+      <div *ngIf="password2?.errors && password2?.touched">
+
+        <p *ngIf="password2?.hasError('required')" class="text-danger">
+          Por favor confirma la contraseña.
+        </p>
+  
+        <p *ngIf="password2?.errors?.['minlength']" class="text-danger">
+          La contraseña debe contener al menos 8 caracteres.
+        </p>
+      </div>
+
+      <!--<div class="alert alert-danger mt-2" [hidden]="password2?.valid || password2?.pristine" >
+        El campo es requerido
+      </div>-->
+
+      <!--<p class="form-group-errorText">
+        Ambas contraseñas tienen que ser iguales
+      </p>-->
+    </div>
+    <div class="form-group" id="groupTerminos">
+      <label class="form-group-label">
+        <input
+          type="checkbox"
+          class="form-group-label-checkbox"
+          name="terms"
+          id="terms"
+        />
+        Aceptos los
+        <a href="#" class="form-group-label-checkbox-link"
+          >términos y condicones.</a
+        >
+      </label>
+    </div>
+    <div class="form-messaje-error" id="formMessaje">
+      <p><b>Error</b> Por favor rellena el formulario correctamente.</p>
+    </div>
+    <div class="form-messaje-done" id="formDone">
+      <p>Formulario enviado correctamente.</p>
+    </div>
+    <div class="form-group form-group-btn" >
+      <button type="submit" class="form-group-btn-send" [disabled]="form.invalid" >
+        Enviar</button>
+      <a href="/login" class="form-group-link">¿Ya tenes una cuenta?</a>
+    </div>
+  </form>
+</section>
+ 

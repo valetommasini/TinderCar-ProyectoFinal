@@ -1,5 +1,4 @@
-
-  <div class="container m-5">
+<div class="container m-5">
   <div class="row">
     <div class="col-md-8">
       <div class="card mb-3">
@@ -15,14 +14,18 @@
             </thead>
             <tbody>
               <!-- Ejemplo de un producto -->
-              <tr>
-                <td>Cochera Balcarce</td>
-                <td>&#36;500</td>
-                <td><img src="../../../assets/img/cochera2.jpg" alt="cochera" width="100"></td>
-                <i class="bi bi-x"></i>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="dark" class="bi bi-x mt-3" viewBox="0 0 16 16">
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
+              <tr *ngFor="let item of listaCocheras">
+                <td>{{ item.nombre_cochera }}</td>
+                <td>{{ "$" + item.precio }}</td>
+                <td class="d-flex justify-content-between">
+                  <img [src]="item.img_cochera" alt="cochera" width="100" />
+                  <button
+                    class="w-100 btn"
+                    (click)="eliminar(item.nombre_cochera)"
+                  >
+                    X
+                  </button>
+                </td>
               </tr>
               <!-- Agrega más filas para mostrar otros productos -->
             </tbody>
@@ -45,10 +48,12 @@
             </thead>
             <tbody>
               <!-- Ejemplo de un producto en el carrito -->
-              <tr>
-                <td>Cochera Balcarce</td>
-                <td>&#36;500</td>
-                <td><img src="../../../assets/img/cochera2.jpg" alt="Imagen del producto" width="100"></td>
+              <tr *ngFor="let item of listaCocheras">
+                <td>{{ item.nombre_cochera }}</td>
+                <td>{{ "$" + item.precio }}</td>
+                <td>
+                  <img [src]="item.img_cochera" alt="cochera" width="100" />
+                </td>
               </tr>
               <!-- Agrega más filas para mostrar otros productos en el carrito -->
             </tbody>
@@ -56,8 +61,16 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-outline-success m-lg-3" routerLink="/detalle-facturacion" >Pagar</button>
-      <button type="button" class="btn btn-outline-info" routerLink="/elegir">Volver</button>
+      <button
+        type="button"
+        class="btn btn-outline-success m-lg-3"
+        routerLink="/detalle-facturacion"
+      >
+        Pagar
+      </button>
+      <button type="button" class="btn btn-outline-info" routerLink="/elegir">
+        Volver
+      </button>
     </div>
   </div>
 </div>

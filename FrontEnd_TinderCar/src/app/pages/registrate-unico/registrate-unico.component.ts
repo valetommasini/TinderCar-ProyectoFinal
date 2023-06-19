@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from '../../services/register.service';
-import { UserRegister } from '../models/user.register-models';
+import { Router } from '@angular/router';
+import { NuevoUsuario } from 'src/app/models/nuevo-usuario';
+import { RegistroService } from 'src/app/services/registro.service';
 
 @Component({
   selector: 'app-registrate-unico',
@@ -9,77 +10,88 @@ import { UserRegister } from '../models/user.register-models';
   styleUrls: ['./registrate-unico.component.css'],
 })
 export class RegistrateUnicoComponent implements OnInit {
-  // no puede llamarse exactamente igual, cambie la f a minuscula
-  formGroup!: FormGroup;
-  isSuccess: boolean = false;
+  public nombre_usuario = '';
+  public apellido_usuario = '';
+  public correo_usuario = '';
+  public contrasenia_usuario = '';
+  public telefono_usuario = null;
+  public aceptar_terminos = false;
+  public rol = '';
+
+  public formRegister: FormGroup = new FormGroup({});
 
   constructor(
-    private registerService: RegisterService,
+    private registroSv: RegistroService,
+    private router: Router,
     private formBuilder: FormBuilder
-  ) {}
-
-  ngOnInit(): void {
-    this.validationForm();
-  }
-
-  private validationForm(): void {
-    this.formGroup = this.formBuilder.group({
-      //faltaba la clave register que despues se llama en el html
-      register: this.formBuilder.group({
-        firstName: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(50),
-          ],
-        ],
-        lastName: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(50),
-          ],
-        ],
-        email: ['', [Validators.required, Validators.email]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(50),
-          ],
-        ],
-        //faltaba phone
-        phone: ['', [Validators.required]],
-        repeatPassword: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(50),
-          ],
-        ],
-        //faltaba terms
-        terms: ['', [Validators.required]],
-      }),
+  ) {
+    this.formRegister = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      apellido: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(5)]],
+      rol: ['', [Validators.required]],
+      terms: ['', [Validators.required, Validators.requiredTrue]],
     });
   }
 
-  public sendUserForm(): void {
-    if (this.formGroup.invalid) return;
-    const userRegister: UserRegister = this.formGroup.value;
-    this.registerService.userRegister(userRegister).subscribe({
-      next: (response) => {
-        this.isSuccess = true;
-        console.log('Registro exitoso', response);
+  get Nombre() {
+    return this.formRegister.get('nombre');
+  }
+
+  get Apellido() {
+    return this.formRegister.get('apellido');
+  }
+
+  get Mail() {
+    return this.formRegister.get('email');
+  }
+
+  get Tel() {
+    return this.formRegister.get('telefono');
+  }
+
+  get Pass() {
+    return this.formRegister.get('password');
+  }
+
+  get ConfPass() {
+    return this.formRegister.get('confirmPassword');
+  }
+
+  get Rol() {
+    return this.formRegister.get('rol');
+  }
+
+  get Terms() {
+    return this.formRegister.get('terms');
+  }
+
+  ngOnInit(): void {}
+
+  createUsuario() {
+    const nuevoUsuario = new NuevoUsuario(
+      this.nombre_usuario,
+      this.apellido_usuario,
+      this.correo_usuario,
+      this.contrasenia_usuario,
+      this.telefono_usuario ?? 0,
+      this.aceptar_terminos,
+      this.rol
+    );
+
+    this.registroSv.postUsusario(nuevoUsuario).subscribe({
+      next: (data) => {
+        alert('Usuario creado');
+        this.router.navigate(['/login']);
       },
-      error: (error) => {
-        console.log('Registro fallido', error);
+      error: (err) => {
+        console.error(err.error.mensaje);
       },
     });
-  }
+
+    console.log(nuevoUsuario);
+  }
 }
-
-

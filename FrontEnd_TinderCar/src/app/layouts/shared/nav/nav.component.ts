@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Login } from 'src/app/models/login';
+import { TokenService } from 'src/app/services/token.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,31 +11,29 @@ import { NavigationEnd, Router } from '@angular/router';
 export class NavComponent {
   //inicializo la varaible en falso para ocultar los links
   isLogged: boolean = false;
+  isAdmin: boolean = false;
+  loginUsuario: Login | undefined;
+  rol: string = '';
+  email: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private tokenSv: TokenService) {}
 
   ngOnInit(): void {
-    this.onLoggout();
+    const authAuthorities = sessionStorage.getItem('AuthAuthorities');
+
+    if (this.tokenSv.getToken()) {
+      this.isLogged = true;
+      this.rol = JSON.parse(authAuthorities!);
+      if (this.rol === 'Administrador') {
+        this.isAdmin = true;
+      }
+    } else {
+      this.isLogged = false;
+    }
   }
 
-  /*
-  me subscribo a los eventos de router. 
-  con instanceof compruebo si el objeto event es una instancia de la clase NavigationEnd ademas de esto, 
-  hago una operacion logica con && event.url === "/home". entonces con esto digo,
-
-  SI 
-    event instanceof NavigationEnd Y event.url === "/home" entonces
-      cambia el valor de la variable isLogged a true
-      this.isLogged = true;
-
-  si esto valida a verdadero al simular ingresar, aparacen o desaparecen los links de nav 
-  (ej. aparece cerrar sesion y desaparece sobre nosotros).
-  */
-  public onLoggout() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && event.url === '/home') {
-        this.isLogged = true;
-      }
-    });
+  public onLogout() {
+    this.tokenSv.logOut();
+    window.location.reload();
   }
 }

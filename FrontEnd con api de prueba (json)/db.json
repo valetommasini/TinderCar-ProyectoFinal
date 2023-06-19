@@ -1,0 +1,83 @@
+{
+  "elegirCochera": [
+    {
+      "imagen": "./assets/img/parking2.jpeg", 
+      "nombreCochera": "Vicente", 
+      "descripcion": "Dirección: Bulevar illia 1985. Ofrecemos servicio de lavado, no alqiolamos por día"
+      
+    },
+
+    {
+      "imagen": "./assets/img/parking1.jpg", 
+      "nombreCochera": "Don Luis", 
+      "descripcion": "Dirección: Fueraza Aerea 2020. Cochera de alquiler por día, techada"
+      
+    },
+
+    {
+      "imagen": "./assets/img/parking8.jpg", 
+      "nombreCochera": "San Francisco", 
+      "descripcion": "Dirección: Gral Paz Pedrito 3000. alquilamos mensual por semestre y semestral, cochera totalmente techada"
+      
+    },
+
+    {
+      "imagen": "./assets/img/parking4.jpg", 
+      "nombreCochera": "Martinelli", 
+      "descripcion": "Dirección: Gral Paz Pedrito 3000. alquilamos mensual por semestre y semestral, cochera totalmente techada"
+      
+    },
+
+    {
+      "imagen": "./assets/img/parking5.jpg", 
+      "nombreCochera": "La Rueda", 
+      "descripcion": "Dirección: Gral Paz Pedrito 3000. alquilamos mensual por semestre y semestral, cochera totalmente techada"
+      
+    },
+
+    {
+      "imagen": "./assets/img/parking6.jpg", 
+      "nombreCochera": "Cochera Alta Córdoba", 
+      "descripcion": "Dirección: Gral Paz Pedrito 3000. alquilamos mensual por semestre y semestral, cochera totalmente techada"
+      
+    }
+  ],
+
+  "datosCochera": [
+    {"titulo": "Vicente","imagenDatos": "./assets/img/parking2.jpeg"},
+    {"titulo": "Don Luis", "imagenDatos": "./assets/img/parking1.jpeg"},
+    { "titulo": "San Francisco", "imagenDatos": "./assets/img/parking8.jpeg"},
+    { "titulo": "Martinelli", "imagenDatos": "./assets/img/parking4.jpeg"},
+    { "titulo": "La Rueda", "imagenDatos": "./assets/img/parking5.jpeg"},
+    { "titulo": "Cochera Alta Córdoba", "imagenDatos": "./assets/img/parking6.jpeg"}
+    
+],
+
+"cantidadAutos": [
+   {"ocpcion": 1},
+   {"opcion": 2},
+   {"opcion": 3},
+   {"opcion": 4}
+   
+  
+],
+
+"servicios": [
+  
+   {"servicio": "lavado carrocería",  "precio": 1250},
+   {"servicio": "lavado carrocería y tapizado","precio": 3000},
+   {"servicio": "lavado completo más tratamiento cerámico","precio":500 }
+  
+],
+
+"tiempoPrecio": [
+  {"tiempo": "1 día","precio": "$10000"},
+  {"tiempo": "15 días", "precio": "$5000"},
+  {"tiempo": "1 mes", "precio": "$10000"},
+  {"tiempo": "6 meses", "precio": "$50000"},
+  {"tiempo": "1 año", "precio": "$80000"}
+   
+  ]
+
+}
+
