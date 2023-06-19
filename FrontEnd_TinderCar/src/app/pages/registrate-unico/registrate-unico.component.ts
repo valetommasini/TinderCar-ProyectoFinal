@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/models/nuevo-usuario';
 import { RegistroService } from 'src/app/services/registro.service';
@@ -18,27 +18,58 @@ export class RegistrateUnicoComponent implements OnInit {
   public aceptar_terminos = false;
   public rol = '';
 
-  public formLogin: FormGroup = new FormGroup({});
-  public expReg = /^[a-zA-Z0-9]{5,5}$/;
+  public formRegister: FormGroup = new FormGroup({});
 
-  formBuilder: any;
-
-  constructor(private registroSv: RegistroService, private router: Router) {
-    // this.validation();
+  constructor(
+    private registroSv: RegistroService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    this.formRegister = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      apellido: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(5)]],
+      rol: ['', [Validators.required]],
+      terms: ['', [Validators.required, Validators.requiredTrue]],
+    });
   }
-  ngOnInit(): void {}
 
-  // validation(): void {
-  //   this.formLogin = this.formBuilder.group({
-  //     nombre_usuario: ['', [Validators.required]],
-  //     apellido: ['', [Validators.required]],
-  //     email: ['', [Validators.required, Validators.pattern(this.expReg)]],
-  //     tel: ['', [Validators.required]],
-  //     contrasenia: ['', [Validators.required, Validators.minLength(5)]],
-  //     role: ['', [Validators.required]],
-  //     terms: ['', [Validators.required]],
-  //   });
-  // }
+  get Nombre() {
+    return this.formRegister.get('nombre');
+  }
+
+  get Apellido() {
+    return this.formRegister.get('apellido');
+  }
+
+  get Mail() {
+    return this.formRegister.get('email');
+  }
+
+  get Tel() {
+    return this.formRegister.get('telefono');
+  }
+
+  get Pass() {
+    return this.formRegister.get('password');
+  }
+
+  get ConfPass() {
+    return this.formRegister.get('confirmPassword');
+  }
+
+  get Rol() {
+    return this.formRegister.get('rol');
+  }
+
+  get Terms() {
+    return this.formRegister.get('terms');
+  }
+
+  ngOnInit(): void {}
 
   createUsuario() {
     const nuevoUsuario = new NuevoUsuario(
@@ -62,5 +93,5 @@ export class RegistrateUnicoComponent implements OnInit {
     });
 
     console.log(nuevoUsuario);
-  }
+  }
 }

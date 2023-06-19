@@ -29,8 +29,10 @@ export class LoginComponent implements OnInit {
     private authSv: AuthService
   ) {
     this.formLogin = this.formBuilder.group({
+      
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
+
     });
   }
 

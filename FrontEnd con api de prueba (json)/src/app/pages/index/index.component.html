@@ -1,0 +1,83 @@
+<section>
+  <article class="mapa-content">
+    <div>
+      <div id="googleMap">
+        <iframe
+          class="w-100 vh-85"
+          [src]="mapa"
+          width=""
+          height=""
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </article>
+
+  <div class="container-fluid mb-5 justify-content-center">
+    <div class="row d-flex justify-content-between">
+      <div class="mb-4 col-12 col-sm-6 col-lg-3" *ngFor="let data of cardsData">
+        <div class="card mx-auto" style="width: 18rem">
+          <img src="{{ data.imgCard }}" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{ data.tituloCard }}</h5>
+            <p class="card-text">
+              {{ data.descripcionCard }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="mb-4 col-12 col-sm-6 col-lg-3">
+        <div class="card mx-auto" style="width: 18rem">
+          <img
+            src="../../../assets/img/busqueda.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Busqueda</h5>
+            <p class="card-text">
+              Podras realizar tu busqueda segun plan, forma de pago y ubicacion.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4 col-12 col-sm-6 col-lg-3">
+        <div class="card mx-auto" style="width: 18rem">
+          <img
+            src="../../../assets/img/parking.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Reserva y paga</h5>
+            <p class="card-text">
+              Elegi la cochera que mas te convenga, reserva y paga. TinderCar lo
+              hace simple!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4 col-12 col-sm-6 col-lg-3">
+        <div class="card mx-auto" style="width: 18rem">
+          <img
+            src="../../../assets/img/benefit.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Beneficio</h5>
+            <p class="card-text">
+              Promociones y descuentos en YPF, lubricentros y mucho más.
+            </p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>

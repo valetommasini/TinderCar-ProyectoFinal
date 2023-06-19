@@ -46,17 +46,14 @@ form .btn-ingresar:hover {
   background-color: #151c6a;
 }
 
-.error {
-  color: #ff6961;
-  font-weight: bold;
+
+
+input.ng-invalid.ng-touched {
+  border:solid 4px tomato;
+
 }
 
-.warning {
-  color: #fdfd96;
-  font-weight: bold;
+input.ng-valid {
+  border:solid 4px green;
 }
 
-.success {
-  color: #77dd77;
-  font-weight: bold;
-}
