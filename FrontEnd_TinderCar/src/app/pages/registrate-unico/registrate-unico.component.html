@@ -3,7 +3,12 @@
     <div class="form-title">
       <h3>Registrate</h3>
     </div>
+<<<<<<< HEAD
     <div class="form-group" id="groupFirstname">
+=======
+    <!-- formGroupName="register" va en cada campo del formulario -->
+    <div class="form-group" id="groupFirstname" formGroupName="register">
+>>>>>>> 477d3acf78228781ee889deec2110fd698c80eca
       <label for="userName" class="form-group-label">Nombre</label>
       <input
         type="text" formControlName="firstName"
@@ -53,8 +58,24 @@
         El apellido es requerido
       </p>
 
+<<<<<<< HEAD
       <p *ngIf="lastname?.errors?.['minlength']" class="text-danger">
         El apellido tiene que ser de más de 4 letras.
+=======
+    <div class="form-group" id="groupEmail" formGroupName="register">
+      <label for="email" class="form-group-label">Correo Electrónico</label>
+      <input
+
+        formControlName="email"
+        type="email"
+        class="form-group-input"
+        name="email"
+        id="email"
+      />
+      <p class="form-group-errorText">
+        El email solo puede contener letras, numeros, puntos, guíones y guíon
+        bajo.
+>>>>>>> 477d3acf78228781ee889deec2110fd698c80eca
       </p>
     </div>
   </div>
@@ -93,6 +114,7 @@
     </div>
     <div class="form-group" id="groupPhone">
       <label for="phone" class="form-group-label">Telefono</label>
+<<<<<<< HEAD
       <input type="text" formControlName="phone" class="form-group-input" name="phone" id="phone" placeholder="3510000000"/>
       
       <!--<div class="alert alert-danger mt-2" [hidden]="phone?.valid || phone?.pristine" >
@@ -114,6 +136,17 @@
       </div>
 
       <!--<p class="form-group-errorText">
+=======
+      <input
+        formControlName="phone"
+
+        type="number"
+        class="form-group-input"
+        name="phone"
+        id="phone"
+      />
+      <p class="form-group-errorText">
+>>>>>>> 477d3acf78228781ee889deec2110fd698c80eca
         El telefono solo puede contener numeros y el maximo son 14 digitos.
       </p>-->
     </div>
