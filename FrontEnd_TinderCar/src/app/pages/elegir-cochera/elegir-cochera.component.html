@@ -2,14 +2,14 @@
   <div class="row">
     <div
       class="col-12 col-lg-4 d-flex flex-wrap justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between"
-      *ngFor="let data of elegirCochera"
+      *ngFor="let data of cocheras"
     >
       <div class="card mx-auto mb-5" style="width: 25rem">
-        <img [src]="data.img" class="card-img-top" alt="parking1" />
+        <img [src]="data.img_cochera" class="card-img-top" alt="parking1" />
         <div class="card-body">
-          <h5 class="card-title">{{ data.nombre }}</h5>
+          <h5 class="card-title">{{ data.nombre_cochera }}</h5>
           <p class="card-text">
-            {{ data.descripcion }}
+            {{ data.descripcion_cochera }}
           </p>
           <!-- Button trigger modal -->
           <button
@@ -33,7 +33,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Cochera Título
+                    {{ data.nombre_cochera }}
                   </h1>
                   <button
                     type="button"
@@ -44,108 +44,126 @@
                 </div>
                 <div class="modal-body fw-semibold">
                   <div class="img-cochera">
-                    <img [src]="data.img" class="card-img-top" alt="parking1" />
+                    <img
+                      [src]="data.img_cochera"
+                      class="card-img-top"
+                      alt="parking1"
+                    />
                     <div class="mt-2 text-center">
-
-                      <div class="container mt-2" >
+                      <div class="container mt-2">
                         <div class="row">
                           <div class="col-12">
                             <div class="card mb-3">
-                              <div class="card-body" >
-                                <h2> Tiempo de Alquiler </h2>
+                              <div class="card-body">
+                                <h2>Tiempo de Alquiler</h2>
                                 <table class="table">
                                   <thead>
                                     <tr>
-                                      <th> Tiempo </th>
+                                      <th>Tiempo</th>
                                       <th>Precio</th>
-                                      <th> </th>
-                                  </tr>
-                                  </thead>
-                                  <tbody *ngFor="let data of elegirTiempo">
-                                    <!-- Ejemplo de un producto -->
-                                    <tr>
-                                      <td> {{data.tiempo}} </td>
-                                      <td>{{data.precio}} </td>
-                                      <td><button type="button" class="btn btn-primary" routerLink="/detalle-facturacion">
-                                        Elegir
-                                      </button></td>
-                                      <!--<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="dark" class="bi bi-x mt-3" viewBox="0 0 16 16">
-                                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                      </svg>-->
-  
                                     </tr>
-                                    <!-- Agrega más filas para mostrar otros productos -->
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let tiempo of tiemposPrecios">
+                                      <td>{{ tiempo.tiempo }}</td>
+                                      <td>
+                                        $ <span>{{ tiempo.precio }}</span>
+                                      </td>
+                                      <td>
+                                        <button
+                                          type="button"
+                                          class="btn btn-primary"
+                                          (click)="
+                                            agregar(
+                                              data.id_cochera,
+                                              data.precio_servicio,
+                                              data.precio
+                                            );
+                                            costoTiempo(tiempo)
+                                          "
+                                          [class.t_elegido]="
+                                            tiempo === tiempoElegido
+                                          "
+                                        >
+                                          <!-- cerrarModal(); -->
+                                          <!-- routerLink="/detalle-facturacion" -->
+                                          Elegir
+                                        </button>
+                                      </td>
+                                    </tr>
                                   </tbody>
                                 </table>
                               </div>
                             </div>
                           </div>
-                      
-                      <p>Precio Estadía Mensual Según Cantidad de Vehículos:</p>
-                    </div>
-                    <div class="row-cols-lg-2">
-                      <div class="col-xl-10">
-                        <div class="input-group mb-3">
-                          <label
-                            class="input-group-text"
-                            for="inputGroupSelect01"
-                            >Cantidad</label
-                          >
-                          <select
-                            class="form-select fw-medium"
-                            id="inputGroupSelect01"
-                          >
-                            <option selected class="m-auto">Seleccione</option>
-                            <option
-                              value="1"
-                              *ngFor="let data of elegirCantidad"
-                            >
-                              {{ data.autosCantidad }}:
-                              <span>{{ "$" + data.precio }}</span>
-                            </option>
-                          </select>
                         </div>
-                        <p class="text-center fw-medium">
-                          Usted puede adquirir:
-                        </p>
-                        <div class="input-group mb-3">
-                          <label
-                            class="input-group-text"
-                            for="inputGroupSelect01"
-                            >Servicios Extras</label
-                          >
-                          <select class="form-select" id="inputGroupSelect01">
-                            <option selected>Seleccione</option>
-                            <option
-                              value="1"
-                              *ngFor="let data of elegirServicio"
-                            >
-                              {{ data.lavado }}:
-                              <span>{{ "$" + data.precio }}</span>
-                            </option>
-                          </select>
+
+                        <div class="">
+                          <div class="">
+                            <p class="text-center fw-medium">
+                              Usted puede adquirir:
+                            </p>
+                            <div class="input-group mb-3">
+                              <label
+                                class="input-group-text"
+                                for="inputGroupSelect01"
+                                >Servicios Extras</label
+                              >
+                              <select
+                                class="form-select justify-content-center"
+                                id="inputGroupSelect01"
+                                (change)="costoServicio($event)"
+                              >
+                                <option selected>Seleccione</option>
+                                <option
+                                  *ngFor="let servicio of serviciosPrecios"
+                                  [value]="servicio.servicio"
+                                >
+                                  {{ servicio.servicio }}
+                                  <span>{{ "$" + servicio.precio }}</span>
+                                </option>
+                              </select>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        routerLink="/carrito"
+                        *ngIf="tiemposPrecios; servicios"
+                        (click)="
+                          cerrarModal();
+                          agregar(
+                            data.id_cochera,
+                            data.precio_servicio,
+                            data.precio
+                          );
+                          suma()
+                        "
+                      >
+                        Agregar al Carrito
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="
+                          cerrarModal();
+                          agregar(
+                            data.id_cochera,
+                            data.precio_servicio,
+                            data.precio
+                          );
+                          suma()
+                        "
+                        routerLink="/detalle-facturacion"
+                      >
+                        Alquilar
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    (click)="cerrarModal()"
-                    routerLink="/carrito"
-                  >
-                    Agregar al Carrito
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    routerLink="/detalle-facturacion"
-                    (click)="cerrarModal()"
-                  >
-                    Alquilar
-                  </button>
                 </div>
               </div>
             </div>

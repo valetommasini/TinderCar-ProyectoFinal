@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ElegirCocheraComponent } from './elegir-cochera/elegir-cochera.component';
 import { CarritoAlquilerComponent } from './carrito-alquiler/carrito-alquiler.component';
 import { DetalleFacturacionComponent } from './detalle-facturacion/detalle-facturacion.component';
+import { MPagoService } from '../services/mpago.service';
 
 @NgModule({
   declarations: [
@@ -30,5 +31,6 @@ import { DetalleFacturacionComponent } from './detalle-facturacion/detalle-factu
     CarritoAlquilerComponent,
     DetalleFacturacionComponent,
   ],
+  providers: [MPagoService],
 })
 export class PagesModule {}
