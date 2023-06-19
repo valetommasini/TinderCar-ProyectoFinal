@@ -36,16 +36,14 @@ export class RegistrateUnicoComponent  {
   }
 
 
-
   form = new FormGroup({
-    'firstName':new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(16),Validators.pattern(/^[A-Za-z]+$/)]),
-    'lastname':new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(16),Validators.pattern(/^[A-Za-z]+$/)]),
+    'firstName':new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(16)]),
+    'lastname':new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(16)]),
     'email':new FormControl('',[Validators.required, Validators.email]),
-    'phone':new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(14),Validators.pattern(/^\d{10}$/)]),
+    'phone':new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(14)]),
     'password':new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(15)]),
     'password2':new FormControl('',[Validators.required])
 
   });
 }
-
 
