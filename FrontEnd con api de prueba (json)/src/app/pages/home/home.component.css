@@ -1,0 +1,12 @@
+.mapa-content {
+  margin-bottom: 5rem;
+}
+#googleMap {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.vh-85 {
+  height: 100vh;
+}
