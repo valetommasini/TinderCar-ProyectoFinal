@@ -153,3 +153,17 @@
 .form h5 {
   color: #fff;
 }
+
+.form-group-select {
+  grid-column: span 2;
+}
+
+
+input.ng-invalid.ng-touched {
+  border:solid 4px tomato;
+
+}
+
+input.ng-valid {
+  border:solid 4px green;
+}

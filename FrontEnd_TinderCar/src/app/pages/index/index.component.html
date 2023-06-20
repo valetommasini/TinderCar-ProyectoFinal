@@ -2,7 +2,7 @@
   <article class="mapa-content">
     <div>
       <div id="googleMap">
-        <iframe
+        <!-- <iframe
           class="w-100 vh-85"
           [src]="mapa"
           width=""
@@ -11,26 +11,32 @@
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        ></iframe> -->
+        <app-home></app-home>
       </div>
     </div>
   </article>
 
   <div class="container-fluid mb-5 justify-content-center">
     <div class="row d-flex justify-content-between">
-      <div class="mb-4 col-12 col-sm-6 col-lg-3" *ngFor="let data of cardsData">
+      <div class="mb-4 col-12 col-sm-6 col-lg-3">
         <div class="card mx-auto" style="width: 18rem">
-          <img src="{{ data.imgCard }}" class="card-img-top" alt="..." />
+          <img
+            src="../../../assets/img/registro.jpg"
+            class="card-img-top"
+            alt="..."
+          />
           <div class="card-body">
-            <h5 class="card-title">{{ data.tituloCard }}</h5>
+            <h5 class="card-title">Registrate</h5>
             <p class="card-text">
-              {{ data.descripcionCard }}
+              Ingresá tus datos y los del vehiculo y creá una cuenta en el
+              sitio.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- <div class="mb-4 col-12 col-sm-6 col-lg-3">
+      <div class="mb-4 col-12 col-sm-6 col-lg-3">
         <div class="card mx-auto" style="width: 18rem">
           <img
             src="../../../assets/img/busqueda.jpg"
@@ -77,7 +83,7 @@
             </p>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </section>

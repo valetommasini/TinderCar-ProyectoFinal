@@ -1,54 +1,85 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 // para validar con formularios reactivos
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Login } from 'src/app/models/login';
+import { TokenService } from 'src/app/services/token.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  isLogged = false;
+  isLoginFail = false;
+  loginUsuario: Login | undefined;
+  correo_usuario: string = '';
+  contrasenia_usuario: string = '';
+  roles: string = '';
+  errMsj: string = '';
+
+  //validacion
   public formLogin: FormGroup = new FormGroup({});
-
-  //valores para los campos del login
-  public user = 'admin@email.com';
-  public pass = 'admin1234';
-  constructor(private formBuilder: FormBuilder, private router: Router) {
-    this.validation();
-  }
-
-  // private createValidacion(): FormGroup {
-  //   return this.formBuilder.group({
-  //     usuario: ['', [Validators.required]],
-  //     contrasenia: ['', [Validators.required]],
-  //   });
-  // }
-
-  private validation(): void {
+  constructor(
+    private formBuilder: FormBuilder,
+    private tokenSv: TokenService,
+    private authSv: AuthService
+  ) {
     this.formLogin = this.formBuilder.group({
-      //validaciones de usuario y contraseña
-      usuario: ['', [Validators.required, Validators.pattern(this.user)]],
-      contrasenia: ['', [Validators.required, Validators.pattern(this.pass)]],
+      
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+
     });
   }
 
-  public enviarForm() {
-    // console.log(this.formLogin);
-    if (this.formLogin.invalid) {
-      Object.values(this.formLogin.controls).forEach((control) => {
-        control.markAllAsTouched();
-      });
-      return;
+  ngOnInit(): void {
+    if (this.tokenSv.getToken()) {
+      this.isLogged = true;
+      this.isLoginFail = false;
+      this.roles = this.tokenSv.getAuthorities();
     }
-
-    this.router.navigate(['/home']); //para redirigir al home
-    alert('Formulario enviado');
-    console.log(this.formLogin.value);
   }
 
-  public get f(): any {
-    return this.formLogin.controls;
+  get Mail() {
+    return this.formLogin.get('email');
+  }
+
+  get Pass() {
+    return this.formLogin.get('password');
+  }
+
+  onLogin(): void {
+    this.loginUsuario = new Login(
+      this.correo_usuario,
+      this.contrasenia_usuario
+    );
+    this.authSv.login(this.loginUsuario).subscribe({
+      next: (data) => {
+        this.isLogged = true;
+        this.tokenSv.setToken(data.access_token);
+        this.tokenSv.setEmail(data.email);
+        this.tokenSv.setAuthorities(data.rol || undefined);
+        // this.roles = data.roles;
+        window.location.reload();
+        // this.router.navigate(['/dashboard']);
+        console.log(data.access_token);
+      },
+      error: (err) => {
+        this.isLogged = false;
+        this.isLoginFail = true;
+        this.errMsj = err.error.message;
+      },
+    });
   }
 }
+// credenciales usuario normal
+// email: gab@email.com
+// password: 1234
+
+// credenciales usuario administrador
+// email: admin@email.com
+// password: admin1234

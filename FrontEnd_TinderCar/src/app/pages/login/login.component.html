@@ -1,38 +1,86 @@
-<div class="container vh-100">
-  <div class="row d-flex align-items-center h-100">
-    <div class="col-12 d-flex justify-content-center">
-      <form
-        class="w-50 login_form"
-        [formGroup]="formLogin"
-        (ngSubmit)="enviarForm()"
+<div class="vh-100">
+  <div class="video-container w-100" *ngIf="isLogged; else loggedOut">
+    <div class="video-wrapper">
+      <video autoplay>
+        <source src="../../../assets/video/bg_video.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="typing-container">
+      <ngx-typed-js
+        [strings]="['Bienvenido a TinderCar']"
+        [typeSpeed]="90"
+        [startDelay]="100"
+        class="typed"
       >
-        <h3 class="text-center mb-3">Iniciar Sesion</h3>
-        <label for="email" class="form-label">Email</label>
-        <input
-          formControlName="usuario"
-          type="email"
-          [class.is-invalid]="f.usuario.errors && f.usuario.touched"
-          class="form-control mb-3"
-          placeholder="ejemplo@ejemplo.com"
-        />
-        <div class="invalid-feedback mb-3">Debes ingresar el email</div>
-
-        <label for="contrasenia" class="form-label">Contraseña</label>
-        <input
-          formControlName="contrasenia"
-          type="password"
-          [class.is-invalid]="f.contrasenia.errors && f.contrasenia.touched"
-          class="form-control mb-3"
-          placeholder="*********"
-        />
-        <div class="invalid-feedback mb-3">Debes ingresar la contraseña</div>
-
-        <input
-          class="mb-3 w-100 btn btn-ingresar"
-          type="submit"
-          value="Ingresar"
-        />
-      </form>
+        <h1 class="typing"></h1>
+        <button class="typing btn btn-success">Alquilar cochera</button>
+      </ngx-typed-js>
     </div>
   </div>
+
+  <ng-template #loggedOut class="container">
+    <div class="row d-flex align-items-center h-100 m-0">
+      <div class="col-12 d-flex justify-content-center">
+        <form
+          #f="ngForm"
+          (ngSubmit)="onLogin()"
+          id="formLogin"
+          [formGroup]="formLogin"
+          class="w-50 login_form"
+          novalidate
+        >
+          <h3 class="text-center mb-3">Iniciar Sesion</h3>
+          <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input
+              class="form-control"
+              type="email"
+              id="email"
+              [(ngModel)]="correo_usuario"
+              formControlName="email"
+              placeholder="ejemplo@email.com"
+              required
+            />
+            <div *ngIf="Mail?.errors && Mail?.touched">
+              <p *ngIf="Mail?.hasError('required')" class="text-danger">
+                El email es requerido
+              </p>
+              <p *ngIf="Mail?.hasError('email')" class="text-danger">
+                El formato debe ser valido
+              </p>
+            </div>
+          </div>
+
+          <div class="formgroup mb-3">
+            <label for="contrasenia">Contraseña</label>
+            <input
+              class="form-control"
+              type="password"
+              id="contrasenia"
+              [(ngModel)]="contrasenia_usuario"
+              formControlName="password"
+              placeholder="*********"
+              required
+            />
+
+            <div *ngIf="Pass?.errors && Pass?.touched">
+              <p *ngIf="Pass?.hasError('required')" class="text-danger">
+                La contraseña es requerida
+              </p>
+              <p *ngIf="Pass?.hasError('minlength')" class="text-warning">
+                La contraseña debe tener al menos 5 caracteres
+              </p>
+            </div>
+          </div>
+
+          <div class="formgroup mb-3">
+            <!-- [disabled]="!f.valid" -->
+            <button type="submit" class="mb-3 w-100 btn btn-ingresar">
+              Iniciar sesion
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
 </div>
