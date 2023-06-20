@@ -1,5 +1,3 @@
-from django.db import models
-
 # Create your models here.
 # SUPER USUARIO
 class Adm(models.Model):
@@ -35,3 +33,4 @@ class Servicio(models.Model):
     cochera = models.ForeignKey(Cochera, on_delete=models.CASCADE)
     servicio = models.CharField(max_length=10, choices=[('servicio1', 'lavado de carroceria'), ('servicio2', 'lavado de carroceria y tapizado'), ('servicio3', 'lavado completo mas tratamiento ceramico')])
     precio = models.IntegerField()
+
