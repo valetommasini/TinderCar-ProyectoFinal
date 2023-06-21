@@ -110,7 +110,7 @@
                                 <option selected>Seleccione</option>
                                 <option *ngFor="let serv of serviciosPrecios">
                                   {{ serv.servicio }}
-                                  <span>{{ "$" + serv.precio }}</span>
+                                  $<span>{{serv.precio }}</span>
                                 </option>
                               </select>
                             </div>

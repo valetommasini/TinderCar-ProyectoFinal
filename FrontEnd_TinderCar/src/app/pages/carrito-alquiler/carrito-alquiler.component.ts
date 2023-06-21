@@ -40,6 +40,7 @@ export class CarritoAlquilerComponent implements OnInit {
     );
     if (indice !== -1) {
       this.listaCocheras!.splice(indice, 1);
+      localStorage.clear(); //agrego el clear para sacar los items del carrito
       console.log('Producto eliminado:', id);
     }
   }
