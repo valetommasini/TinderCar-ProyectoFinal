@@ -64,8 +64,8 @@ export class DetalleFacturacionComponent implements OnInit {
         this.mpagoSv
           .realizarPago(
             cocheraId,
-            tiempoAlquilerId,
-            [1]
+            1, //asi pasa el id de tiempo pasando variables no funciona mercadopago si seteamos en duro si
+            [1] //accede al array de servicio pasando variables no funciona mercadopago si seteamos en duro si
             // [servicios]
           )
           .subscribe({

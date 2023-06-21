@@ -149,7 +149,7 @@ DATABASES = {
          #'HOST' : 'localhost',
         #  'USER' : 'usuario2',
          'USER' : 'root',
-         'PASSWORD' : 'admin1234',
+         'PASSWORD' : '12345',
          'OPTIONS': {
              'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
              }

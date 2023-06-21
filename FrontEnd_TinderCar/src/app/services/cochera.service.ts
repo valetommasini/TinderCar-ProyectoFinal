@@ -41,6 +41,6 @@ export class CocheraService {
   }
 
   public getServicios(cocheraId: number): Observable<any> {
-    return this.http.get<any>(`${this.URL}api/cocheras/${cocheraId}/servicio/`);
+    return this.http.get<any>(`${this.URL}api/cocheras/${cocheraId}/servicios/`);
   }
 }
